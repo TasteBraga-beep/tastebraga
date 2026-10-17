@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Recherche intelligente de restaurants à Braga selon le prix, la qualité, l'accessibilité et vos préférences."
+  >
+
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      script-src 'self';
+      style-src 'self';
+      img-src 'self' data:;
+      connect-src 'self';
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+    "
+  >
+
+  <title>Braga Food Finder</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <a href="#accueil" class="brand" aria-label="Accueil">
+    <span class="brand-icon">🍴</span>
+
+    <span>
+      <strong>Braga Food Finder</strong>
+      <small data-i18n="brandSubtitle">
+        Qualité · Prix · Accessibilité
+      </small>
+    </span>
+  </a>
+
+  <div class="top-actions">
+    <label class="language-label" for="languageSelect">
+      🌐
+      <span class="sr-only" data-i18n="language">
+        Langue
+      </span>
+    </label>
+
+    <select
+      id="languageSelect"
+      aria-label="Sélectionner la langue"
+    >
+      <option value="pt">Português</option>
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="accueil">
+
+    <div class="hero-content">
+
+      <div class="eyebrow" data-i18n="district">
+        District de Braga
+      </div>
+
+      <h1 data-i18n="heroTitle">
+        Où voulez-vous bien manger aujourd’hui ?
+      </h1>
+
+      <p class="hero-description" data-i18n="heroDescription">
+        Trouvez un restaurant selon votre budget, la qualité,
+        l’accessibilité et vos préférences.
+      </p>
+
+      <div class="search-box">
+
+        <label for="searchInput" data-i18n="searchLabel">
+          Restaurant, plat ou envie
+        </label>
+
+        <div class="search-row">
+
+          <input
+            id="searchInput"
+            type="search"
+            autocomplete="off"
+            data-i18n-placeholder="searchPlaceholder"
+            placeholder="Ex. bacalhau, restaurant familial, Braga..."
+          >
+
+          <button id="searchButton" class="primary-button">
+            🔎
+            <span data-i18n="searchButton">
+              Rechercher
+            </span>
+          </button>
+
+        </div>
+
+        <div class="location-row">
+
+          <button
+            id="locationButton"
+            class="secondary-button"
+            type="button"
+          >
+            📍
+            <span data-i18n="aroundMe">
+              Autour de moi
+            </span>
+          </button>
+
+          <span
+            id="locationStatus"
+            class="location-status"
+            aria-live="polite"
+          ></span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RACCOURCIS -->
+  <section class="quick-section container">
+
+    <h2 data-i18n="quickSearch">
+      Recherche rapide
+    </h2>
+
+    <div class="quick-grid">
+
+      <button
+        class="quick-card"
+        data-quick="best"
+      >
+        <span>⭐</span>
+        <span data-i18n="bestValue">
+          Meilleur qualité/prix
+        </span>
+      </button>
+
+      <button
+        class="quick-card"
+        data-quick="cheap"
+      >
+        <span>💶</span>
+        <span data-i18n="under15">
+          Moins de 15 €
+        </span>
+      </button>
+
+      <button
+        class="quick-card"
+        data-quick="portuguese"
+      >
+        <span>🇵🇹</span>
+        <span data-i18n="portugueseFood">
+          Cuisine portugaise
+        </span>
+      </button>
+
+      <button
+        class="quick-card"
+        data-quick="family"
+      >
+        <span>👨‍👩‍👧</span>
+        <span data-i18n="family">
+          En famille
+        </span>
+      </button>
+
+      <button
+        class="quick-card"
+        data-quick="accessible"
+      >
+        <span>♿</span>
+        <span data-i18n="accessible">
+          Accessible PMR
+        </span>
+      </button>
+
+      <button
+        class="quick-card"
+        data-quick="open"
+      >
+        <span>🕐</span>
+        <span data-i18n="openNow">
+          Ouvert maintenant
+        </span>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FILTRES + RESULTATS -->
+  <section class="content-section container">
+
+    <aside class="filters" aria-label="Filtres">
+
+      <div class="filter-header">
+
+        <h2 data-i18n="filters">
+          Filtres
+        </h2>
+
+        <button
+          id="resetFilters"
+          class="text-button"
+          type="button"
+          data-i18n="reset"
+        >
+          Réinitialiser
+        </button>
+
+      </div>
+
+
+      <div class="filter-group">
+
+        <label for="cityFilter" data-i18n="city">
+          Commune
+        </label>
+
+        <select id="cityFilter">
+          <option value="" data-i18n="all">
+            Toutes
+          </option>
+
+          <option value="Braga">
+            Braga
+          </option>
+        </select>
+
+      </div>
+
+
+      <div class="filter-group">
+
+        <label for="budgetFilter" data-i18n="budget">
+          Budget
+        </label>
+
+        <select id="budgetFilter">
+
+          <option value="" data-i18n="anyBudget">
+            Peu importe
+          </option>
+
+          <option value="10">
+            ≤ 10 €
+          </option>
+
+          <option value="15">
+            ≤ 15 €
+          </option>
+
+          <option value="20">
+            ≤ 20 €
+          </option>
+
+          <option value="30">
+            ≤ 30 €
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="filter-group">
+
+        <label for="ratingFilter" data-i18n="minimumRating">
+          Note minimum
+        </label>
+
+        <select id="ratingFilter">
+
+          <option value="0" data-i18n="all">
+            Toutes
+          </option>
+
+          <option value="8">
+            8/10
+          </option>
+
+          <option value="9">
+            9/10
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="filter-group">
+
+        <label for="cuisineFilter" data-i18n="cuisine">
+          Cuisine
+        </label>
+
+        <select id="cuisineFilter">
+
+          <option value="" data-i18n="all">
+            Toutes
+          </option>
+
+          <option value="portuguese">
+            Portuguesa / Portugaise / Portuguese
+          </option>
+
+          <option value="minhota">
+            Minhota
+          </option>
+
+          <option value="seafood">
+            Marisco / Fruits de mer / Seafood
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="check-group">
+
+        <label class="check-line">
+          <input id="familyFilter" type="checkbox">
+          <span data-i18n="familyFriendly">
+            Adapté aux familles
+          </span>
+        </label>
+
+        <label class="check-line">
+          <input id="accessibleFilter" type="checkbox">
+          <span data-i18n="wheelchair">
+            Accessible PMR
+          </span>
+        </label>
+
+        <label class="check-line">
+          <input id="cardFilter" type="checkbox">
+          <span data-i18n="cardPayment">
+            Paiement par carte
+          </span>
+        </label>
+
+        <label class="check-line">
+          <input id="openFilter" type="checkbox">
+          <span data-i18n="openNow">
+            Ouvert maintenant
+          </span>
+        </label>
+
+      </div>
+
+    </aside>
+
+
+    <div class="results-area">
+
+      <div class="results-toolbar">
+
+        <div>
+
+          <p class="toolbar-label" data-i18n="results">
+            Résultats
+          </p>
+
+          <h2 id="resultsCount">
+            0 restaurants
+          </h2>
+
+        </div>
+
+        <div class="toolbar-actions">
+
+          <label class="sort-label">
+
+            <span data-i18n="sortBy">
+              Trier
+            </span>
+
+            <select id="sortSelect">
+
+              <option
+                value="recommended"
+                data-i18n="recommended"
+              >
+                Recommandés
+              </option>
+
+              <option
+                value="rating"
+                data-i18n="bestRated"
+              >
+                Mieux notés
+              </option>
+
+              <option
+                value="reviews"
+                data-i18n="mostReviewed"
+              >
+                Plus d’avis
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="activeFilters"
+        class="active-filters"
+      ></div>
+
+
+      <div
+        id="restaurantsGrid"
+        class="restaurants-grid"
+        aria-live="polite"
+      ></div>
+
+
+      <div
+        id="emptyState"
+        class="empty-state hidden"
+      >
+        <div class="empty-icon">🔎</div>
+
+        <h3 data-i18n="noResults">
+          Aucun restaurant correspondant
+        </h3>
+
+        <p data-i18n="noResultsDescription">
+          Modifiez vos filtres ou votre recherche.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- COMPARATEUR -->
+  <section class="compare-section container">
+
+    <div>
+
+      <h2 data-i18n="compareTitle">
+        Comparateur
+      </h2>
+
+      <p data-i18n="compareDescription">
+        Sélectionnez jusqu’à 4 restaurants pour les comparer.
+      </p>
+
+    </div>
+
+    <button
+      id="compareButton"
+      class="primary-button"
+      disabled
+    >
+      <span data-i18n="compare">
+        Comparer
+      </span>
+
+      <span id="compareCounter">
+        (0)
+      </span>
+    </button>
+
+  </section>
+
+
+  <!-- TRANSPARENCE -->
+  <section class="trust-section">
+
+    <div class="container trust-grid">
+
+      <article>
+        <span class="trust-icon">✓</span>
+
+        <h3 data-i18n="verifiedData">
+          Données transparentes
+        </h3>
+
+        <p data-i18n="verifiedDataText">
+          Les informations inconnues ne sont jamais inventées.
+        </p>
+      </article>
+
+
+      <article>
+        <span class="trust-icon">€</span>
+
+        <h3 data-i18n="valueFocus">
+          Rapport qualité/prix
+        </h3>
+
+        <p data-i18n="valueFocusText">
+          Le prix et la qualité sont analysés séparément.
+        </p>
+      </article>
+
+
+      <article>
+        <span class="trust-icon">🌍</span>
+
+        <h3>PT · FR · EN</h3>
+
+        <p data-i18n="languagesText">
+          Utilisez le service dans votre langue.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer-content">
+
+    <div>
+      <strong>Braga Food Finder</strong>
+
+      <p data-i18n="footerDescription">
+        Recherche intelligente de restaurants dans le district de Braga.
+      </p>
+    </div>
+
+    <p class="footer-note" data-i18n="dataRule">
+      Une information inconnue reste inconnue : aucune donnée n’est inventée.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<!-- MODALE COMPARAISON -->
+<div
+  id="compareModal"
+  class="modal hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="compareModalTitle"
+>
+
+  <div class="modal-backdrop" data-close-modal></div>
+
+  <div class="modal-panel">
+
+    <div class="modal-header">
+
+      <h2
+        id="compareModalTitle"
+        data-i18n="compareRestaurants"
+      >
+        Comparer les restaurants
+      </h2>
+
+      <button
+        class="icon-button"
+        data-close-modal
+        aria-label="Fermer"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div
+      id="compareContent"
+      class="compare-table-wrapper"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
