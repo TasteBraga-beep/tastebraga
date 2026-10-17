@@ -66,8 +66,9 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
     .card {
       background-color: var(--card-bg); border-radius: 16px; overflow: hidden;
-      border: 1px solid var(--border-color); transition: transform 0.2s;
+      border: 1px solid var(--border-color); transition: transform 0.2s; cursor: pointer;
     }
+    .card:hover { transform: translateY(-4px); }
     .card-img { height: 160px; background-size: cover; background-position: center; position: relative; }
     .badge {
       position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.7);
@@ -78,13 +79,39 @@
     .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
     .card-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
     .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Modal de Détails */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000;
+      justify-content: center; align-items: center; padding: 20px;
+    }
+    .modal-content {
+      background: var(--card-bg); width: 100%; max-width: 500px; border-radius: 20px;
+      overflow: hidden; border: 1px solid var(--border-color); animation: fadeIn 0.3s ease;
+    }
+    .modal-header { height: 200px; background-size: cover; background-position: center; position: relative; }
+    .close-modal {
+      position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6);
+      color: white; border: none; width: 32px; height: 32px; border-radius: 50%;
+      font-weight: bold; cursor: pointer; font-size: 1.1rem;
+    }
+    .modal-body { padding: 20px; }
+    .modal-body h2 { font-size: 1.5rem; margin-bottom: 8px; }
+    .modal-body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+    .modal-info { background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; margin-bottom: 16px; font-size: 0.9rem; }
+    .btn-reserve {
+      display: block; width: 100%; background: var(--primary-red); color: white;
+      text-align: center; padding: 12px; border-radius: 10px; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer; font-size: 1rem;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   </style>
 </head>
 <body>
 
   <header>
     <div class="logo-container">
-      <!-- Utilisation du lien direct de votre avatar GitHub -->
       <img src="https://avatars.githubusercontent.com/u/344043097?v=4&size=64" alt="Logo TasteBraga" class="logo-img">
       <div class="logo-text"><span style="color: var(--primary-red);">T</span>aste<span style="color: var(--primary-red);">B</span>raga</div>
     </div>
@@ -95,16 +122,14 @@
     <h1>Descubra a melhor<br><span style="color: var(--primary-red);">Gastronomia de Braga</span></h1>
     <p>Pratos típicos, sobremesas conventuais e os restaurantes mais emblemáticos da cidade dos Arcebispos.</p>
     <div class="search-box">
-      <input type="text" placeholder="Procurar bacalhau, pudim, francesinha...">
+      <input type="text" id="searchInput" placeholder="Procurar bacalhau, pudim, francesinha..." onkeyup="filterCards()">
     </div>
   </section>
 
   <div class="categories">
-    <div class="cat-chip active">🔥 Todos</div>
-    <div class="cat-chip">🐟 Bacalhau à Braga</div>
-    <div class="cat-chip">🥩 Rojões & Francesinhas</div>
-    <div class="cat-chip">🍮 Sobremesas Típicas</div>
-    <div class="cat-chip">🍷 Vinhos do Minho</div>
+    <div class="cat-chip active" onclick="filterCat('all')">🔥 Todos</div>
+    <div class="cat-chip" onclick="filterCat('bacalhau')">🐟 Bacalhau à Braga</div>
+    <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas Típicas</div>
   </div>
 
   <div class="section-title">
@@ -112,8 +137,8 @@
     <span>Ver todos</span>
   </div>
 
-  <div class="grid">
-    <div class="card">
+  <div class="grid" id="cardGrid">
+    <div class="card" data-category="bacalhau" onclick="openModal('Bacalhau à Narcisa', 'O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional do Minho.', '📍 Centro Histórico • Aberto até 23h', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80');">
         <div class="badge">★ 4.9 Especialidade</div>
       </div>
@@ -127,7 +152,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas e toucinho.', '📍 Sé de Braga • Aberto até 20h', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80');">
         <div class="badge">★ 4.8 Conventual</div>
       </div>
@@ -142,5 +167,50 @@
     </div>
   </div>
 
+  <!-- Fenêtre Modale de détail -->
+  <div class="modal" id="restaurantModal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <div class="modal-header" id="modalImg">
+        <button class="close-modal" onclick="closeModalDirect()">×</button>
+      </div>
+      <div class="modal-body">
+        <h2 id="modalTitle">Título</h2>
+        <p id="modalDesc">Descrição...</p>
+        <div class="modal-info" id="modalInfo">Informações...</div>
+        <button class="btn-reserve" onclick="alert('Reserva solicitada com sucesso!')">Reservar Mesa / Pedir</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title, desc, info, imgUrl) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('modalInfo').innerText = info;
+      document.getElementById('modalImg').style.backgroundImage = `url('${imgUrl}')`;
+      document.getElementById('restaurantModal').style.display = 'flex';
+    }
+    function closeModalDirect() {
+      document.getElementById('restaurantModal').style.display = 'none';
+    }
+    function closeModal(e) {
+      if(e.target.id === 'restaurantModal') {
+        document.getElementById('restaurantModal').style.display = 'none';
+      }
+    }
+    function filterCards() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let cards = document.getElementsByClassName('card');
+      for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].querySelector('.card-title').innerText.toLowerCase();
+        let desc = cards[i].querySelector('.card-desc').innerText.toLowerCase();
+        if (title.includes(input) || desc.includes(input)) {
+          cards[i].style.display = "block";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
 </body>
 </html>
