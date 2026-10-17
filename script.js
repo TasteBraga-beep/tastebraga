@@ -2,7 +2,7 @@
 
 
 /* =========================================================
-   BRAGA FOOD FINDER
+   TASTEBRAGA
    Règle :
    Toute donnée inconnue reste null.
    Aucune valeur restaurant n'est inventée.
