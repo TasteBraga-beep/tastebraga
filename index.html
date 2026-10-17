@@ -14,6 +14,7 @@
       --text-white: #FFFFFF;
       --text-muted: #9CA3AF;
       --border-color: #262B36;
+      --tag-orange: #D97706;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -60,7 +61,7 @@
     }
     .cat-chip.active { background-color: var(--primary-red); border-color: var(--primary-red); }
 
-    .section-title { font-size: 1.3rem; font-weight: 700; margin: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .section-title { font-size: 1.3rem; font-weight: 700; margin: 24px 20px 16px; display: flex; justify-content: space-between; align-items: center; }
     .section-title span { font-size: 0.85rem; color: var(--primary-red); cursor: pointer; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
@@ -71,9 +72,14 @@
     .card:hover { transform: translateY(-4px); }
     .card-img { height: 160px; background-size: cover; background-position: center; position: relative; }
     .badge {
-      position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.7);
+      position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(4px); color: #FFD700; padding: 4px 10px; border-radius: 8px;
       font-size: 0.8rem; font-weight: 700;
+    }
+    .badge-order {
+      position: absolute; top: 12px; left: 12px; background: var(--tag-orange);
+      color: white; padding: 4px 10px; border-radius: 8px;
+      font-size: 0.75rem; font-weight: 700;
     }
     .card-content { padding: 16px; }
     .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
@@ -120,25 +126,42 @@
 
   <section class="hero">
     <h1>Descubra a melhor<br><span style="color: var(--primary-red);">Gastronomia de Braga</span></h1>
-    <p>Pratos típicos, sobremesas conventuais e os restaurantes mais emblemáticos da cidade dos Arcebispos.</p>
+    <p>Pratos típicos, sobremesas conventuais e especialidades do mundo por encomenda.</p>
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Procurar bacalhau, pudim, francesinha..." onkeyup="filterCards()">
+      <input type="text" id="searchInput" placeholder="Procurar bacalhau, attieké, pudim..." onkeyup="filterCards()">
     </div>
   </section>
 
   <div class="categories">
     <div class="cat-chip active" onclick="filterCat('all')">🔥 Todos</div>
     <div class="cat-chip" onclick="filterCat('bacalhau')">🐟 Bacalhau à Braga</div>
-    <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas Típicas</div>
+    <div class="cat-chip" onclick="filterCat('africana')">🌍 Sabores d'África (Encomenda)</div>
+    <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas</div>
   </div>
 
   <div class="section-title">
-    Destaques da Semana
-    <span>Ver todos</span>
+    Destaques & Encomendas Especiais
   </div>
 
   <div class="grid" id="cardGrid">
-    <div class="card" data-category="bacalhau" onclick="openModal('Bacalhau à Narcisa', 'O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional do Minho.', '📍 Centro Histórico • Aberto até 23h', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
+    <!-- Plat Attieké & Poisson Braisé -->
+    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Braised (Côte d\'Ivoire)', 'Autêntica sêmola de mandioca fresca acompanhada de peixe fresco braised, alho, cebolas crocantes e molho picante especial. Preparado artesanalmente sob encomenda.', '⏰ Preparação: 4 horas de antecedência\n📍 Entrega ou Retirada em Braga', 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80')">
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80');">
+        <div class="badge-order">⏱️ Por Encomenda (4h)</div>
+        <div class="badge">★ 5.0 Exclusivo</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Attieké com Peixe Braisé 🇨🇮</div>
+        <div class="card-desc">O famoso prato ivoirien: attieké fofinho com peixe braisé no carvão e temperos ricos.</div>
+        <div class="card-footer">
+          <span>📦 Sob Encomenda</span>
+          <span style="color: var(--tag-orange); font-weight: 700;">€15.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bacalhau -->
+    <div class="card" data-category="bacalhau" onclick="openModal('Bacalhau à Narcisa / Braga', 'O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional do Minho.', '📍 Centro Histórico • Aberto até 23h', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80');">
         <div class="badge">★ 4.9 Especialidade</div>
       </div>
@@ -152,6 +175,7 @@
       </div>
     </div>
 
+    <!-- Pudim -->
     <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas e toucinho.', '📍 Sé de Braga • Aberto até 20h', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80');">
         <div class="badge">★ 4.8 Conventual</div>
@@ -177,7 +201,7 @@
         <h2 id="modalTitle">Título</h2>
         <p id="modalDesc">Descrição...</p>
         <div class="modal-info" id="modalInfo">Informações...</div>
-        <button class="btn-reserve" onclick="alert('Reserva solicitada com sucesso!')">Reservar Mesa / Pedir</button>
+        <button class="btn-reserve" onclick="alert('Encomenda / Reserva efetuada com sucesso! Entraremos em contacto.')">Fazer Encomenda / Reservar</button>
       </div>
     </div>
   </div>
