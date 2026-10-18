@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TasteBraga — Gastronomia de Braga</title>
+  <title>TasteBraga — A Gastronomia de Braga num só lugar</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -37,10 +37,11 @@
       border-radius: 10px; cursor: pointer; text-decoration: none; font-size: 0.88rem;
       box-shadow: 0 4px 14px rgba(200, 16, 46, 0.35); transition: transform 0.2s;
     }
+    .btn-partner:hover { transform: translateY(-2px); }
 
-    /* Hero Banner Dynamique (Exclusivité Plats Authenticité) */
+    /* Hero Banner Dynamique (Exclusivité Plats Centrés) */
     .hero-slider {
-      position: relative; width: 100%; height: 300px; overflow: hidden;
+      position: relative; width: 100%; height: 320px; overflow: hidden;
       border-bottom: 1px solid var(--border-color);
     }
     .slide {
@@ -66,7 +67,7 @@
       color: white; font-size: 0.95rem;
     }
 
-    /* Categories Scroll */
+    /* Categories */
     .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
     .cat-chip {
       background-color: var(--card-bg); border: 1px solid var(--border-color);
@@ -135,7 +136,7 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header Sticky -->
   <header>
     <div class="logo-container">
       <img src="https://avatars.githubusercontent.com/u/344043097?v=4&size=64" alt="Logo TasteBraga" class="logo-img">
@@ -144,7 +145,7 @@
     <a href="mailto:tastebraga@gmail.com?subject=Parceria%20Restaurante%20-%20TasteBraga" class="btn-partner">Sou Restaurante</a>
   </header>
 
-  <!-- Hero Slider (Plats Authentiques Uniquement) -->
+  <!-- Hero Slider Dynamique (Exclusividade Plats Authentiques) -->
   <div class="hero-slider">
     <div class="slide active" style="background-image: url('https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=');">
       <div class="slide-overlay">
@@ -155,13 +156,13 @@
     <div class="slide" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
       <div class="slide-overlay">
         <h2>🐟 Bacalhau à Braga</h2>
-        <p>Bacalhau frito, batatas às rodelas e cebolada dourada em azeite virgem extra.</p>
+        <p>Bacalhau frito em azeite virgem extra, batatas às rodelas e cebolada dourada.</p>
       </div>
     </div>
     <div class="slide" style="background-image: url('1cac91acdc56b8154ab1f3fbb54a3fd2.jpg');">
       <div class="slide-overlay">
         <h2>✨ Attiéké com Peixe Frito</h2>
-        <p>Lançamento exclusivo em breve para sondagem dos apreciadores.</p>
+        <p>A novidade exótica em breve para sondagem dos apreciadores em Braga.</p>
       </div>
     </div>
   </div>
@@ -169,20 +170,19 @@
   <!-- Search Box -->
   <div class="search-container">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Procurar arroz de pato, bacalhau, francesinha..." onkeyup="filterCards()">
+      <input type="text" id="searchInput" placeholder="Procurar arroz de pato, bacalhau, pudim..." onkeyup="filterCards()">
     </div>
   </div>
 
-  <!-- Categories -->
   <div class="categories">
-    <div class="cat-chip active">🔥 Todos os Pratos</div>
+    <div class="cat-chip active">🔥 Todos os Pratos Históricos</div>
   </div>
 
   <div class="section-title">
     Especialidades Históricas de Braga
   </div>
 
-  <!-- Menu Cards Grid -->
+  <!-- Grid des Plats Officiels -->
   <div class="grid" id="cardGrid">
 
     <!-- Arroz de Pato -->
@@ -281,7 +281,7 @@
           <input type="text" name="nome" class="form-input" placeholder="Seu Nome (Ex: João Silva)" required />
           <input type="text" name="contacto" class="form-input" placeholder="Seu WhatsApp ou E-mail" required />
           
-          <button type="submit" class="btn-reserve">🎟️ Solagitar Desconto / Participar</button>
+          <button type="submit" class="btn-reserve">🎟️ Solicitar Desconto / Participar</button>
         </form>
       </div>
     </div>
