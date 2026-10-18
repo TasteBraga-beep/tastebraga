@@ -1,130 +1,260 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TasteBraga — Gastronomia</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TasteBraga — A Gastronomia de Braga num só lugar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #e50914;
-      --bg-dark: #0f0f11;
-      --card-bg: #18181c;
-      --text-light: #ffffff;
-      --text-muted: #a0a0a0;
+      --primary-red: #C8102E;
+      --accent-red: #E31837;
+      --bg-dark: #0F1115;
+      --card-bg: #181B22;
+      --text-white: #FFFFFF;
+      --text-muted: #9CA3AF;
+      --border-color: #262B36;
+      --tag-orange: #D97706;
+      --tag-purple: #8B5CF6;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-light); padding-bottom: 40px; }
-    
-    header { background: #050507; text-align: center; padding: 30px 15px; border-bottom: 2px solid var(--primary); }
-    .logo-container { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-    .logo-img { height: 75px; width: auto; object-fit: contain; }
-    .brand-name { font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
-    .brand-name span { color: var(--primary); }
-    .tagline { color: var(--text-muted); font-size: 0.95rem; margin-top: 4px; font-weight: 400; }
-    
-    .container { max-width: 900px; margin: 0 auto; padding: 25px 15px; }
-    .section-title { font-size: 1.3rem; margin-bottom: 20px; text-align: center; color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
-    .card { background: var(--card-bg); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #282830; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
-    .card-img-wrapper { width: 100%; height: 210px; overflow: hidden; position: relative; background: #222; }
-    .card-img { width: 100%; height: 100%; object-fit: cover; }
-    .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
-    .card-title { font-size: 1.25rem; margin-bottom: 8px; color: #fff; font-weight: 700; }
-    .card-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; flex-grow: 1; line-height: 1.45; }
-    
-    .btn-action { background: var(--primary); color: #fff; border: none; padding: 13px; border-radius: 8px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; width: 100%; font-size: 0.95rem; transition: background 0.2s; }
-    .btn-action:hover { background: #c10711; }
 
-    /* Modal Form (Popup) */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-content { background: var(--card-bg); width: 100%; max-width: 400px; padding: 25px; border-radius: 14px; border: 1px solid #333; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
-    .close-btn { position: absolute; top: 12px; right: 16px; font-size: 1.6rem; color: var(--text-muted); cursor: pointer; }
-    .modal h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--primary); }
-    .modal p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
-    .modal input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #3a3a45; background: #0c0c0e; color: #fff; font-size: 0.9rem; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-white); padding-bottom: 40px; }
+
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 24px; background-color: rgba(24, 27, 34, 0.9);
+      backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .logo-container { display: flex; align-items: center; gap: 10px; }
+    .logo-img { width: 38px; height: 38px; object-fit: cover; border-radius: 50%; border: 2px solid var(--primary-red); }
+    .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--text-white); }
+    
+    .btn-partner {
+      background: linear-gradient(135deg, var(--primary-red), var(--accent-red));
+      color: white; border: none; padding: 10px 18px; font-weight: 700;
+      border-radius: 8px; cursor: pointer; text-decoration: none; font-size: 0.9rem;
+    }
+
+    .hero {
+      text-align: center; padding: 48px 20px 32px;
+      background: radial-gradient(circle at top, rgba(200, 16, 46, 0.15) 0%, transparent 70%);
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+    .hero p { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin: 0 auto 24px; }
+
+    .search-box {
+      max-width: 480px; margin: 0 auto; display: flex; gap: 8px;
+      background-color: var(--card-bg); padding: 8px; border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+    .search-box input {
+      flex: 1; background: transparent; border: none; outline: none;
+      color: white; padding: 8px 12px; font-size: 0.95rem;
+    }
+
+    .categories { display: flex; gap: 12px; overflow-x: auto; padding: 24px 20px; scrollbar-width: none; }
+    .cat-chip {
+      background-color: var(--card-bg); border: 1px solid var(--border-color);
+      color: var(--text-white); padding: 8px 16px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer;
+    }
+    .cat-chip.active { background-color: var(--primary-red); border-color: var(--primary-red); }
+
+    .section-title { font-size: 1.3rem; font-weight: 700; margin: 24px 20px 16px; display: flex; justify-content: space-between; align-items: center; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
+    .card {
+      background-color: var(--card-bg); border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border-color); transition: transform 0.2s; cursor: pointer;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card-img { height: 160px; background-size: cover; background-position: center; position: relative; }
+    .badge {
+      position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px); color: #FFD700; padding: 4px 10px; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 700;
+    }
+    .badge-soon {
+      position: absolute; top: 12px; left: 12px; background: var(--tag-purple);
+      color: white; padding: 4px 10px; border-radius: 8px;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    .card-content { padding: 16px; }
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .card-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Modal de Detalhes & Formulario Netlify */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 1000;
+      justify-content: center; align-items: center; padding: 20px;
+    }
+    .modal-content {
+      background: var(--card-bg); width: 100%; max-width: 480px; border-radius: 20px;
+      overflow: hidden; border: 1px solid var(--border-color); animation: fadeIn 0.3s ease;
+      position: relative;
+    }
+    .modal-header { height: 180px; background-size: cover; background-position: center; position: relative; }
+    .close-modal {
+      position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6);
+      color: white; border: none; width: 32px; height: 32px; border-radius: 50%;
+      font-weight: bold; cursor: pointer; font-size: 1.1rem;
+    }
+    .modal-body { padding: 20px; }
+    .modal-body h2 { font-size: 1.3rem; margin-bottom: 6px; }
+    .modal-body p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px; }
+    
+    .form-input {
+      width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px;
+      border: 1px solid var(--border-color); background: #0F1115; color: white;
+      font-size: 0.9rem; outline: none;
+    }
+    .form-input:focus { border-color: var(--primary-red); }
+
+    .btn-reserve {
+      display: block; width: 100%; background: var(--primary-red); color: white;
+      text-align: center; padding: 12px; border-radius: 10px; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer; font-size: 0.95rem; margin-top: 5px;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   </style>
 </head>
 <body>
 
   <header>
     <div class="logo-container">
-      <div class="brand-name"><span>T</span>aste<span>B</span>raga</div>
-      <p class="tagline">Gastronomia &amp; Descontos Exclusivos em Braga</p>
+      <img src="https://avatars.githubusercontent.com/u/344043097?v=4&size=64" alt="Logo TasteBraga" class="logo-img">
+      <div class="logo-text"><span style="color: var(--primary-red);">T</span>aste<span style="color: var(--primary-red);">B</span>raga</div>
     </div>
+    <a href="mailto:tastebraga@gmail.com?subject=Sou%20Restaurante%20-%20Parceria%20TasteBraga" class="btn-partner">Sou Restaurante</a>
   </header>
 
-  <div class="container">
-    <h2 class="section-title">🔥 Especialidades em Destaque</h2>
-    
-    <div class="grid">
-      <!-- Francesinha -->
-      <div class="card">
-        <div class="card-img-wrapper">
-          <img class="card-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Francesinha Tradicional" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Francesinha Tradicional</h3>
-          <p class="card-desc">Queijo derretido, carnes selecionadas e o autêntico molho especial de Braga.</p>
-          <button class="btn-action" onclick="openModal('Francesinha Tradicional')">Obter Código de Desconto 🚀</button>
-        </div>
-      </div>
+  <section class="hero">
+    <h1>Descubra a melhor<br><span style="color: var(--primary-red);">Gastronomia de Braga</span></h1>
+    <p>Guia dos melhores restaurantes, pratos típicos e novidades culinárias em Braga.</p>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Procurar bacalhau, attieké, pudim..." onkeyup="filterCards()">
+    </div>
+  </section>
 
-      <!-- Bacalhau à Braga -->
-      <div class="card">
-        <div class="card-img-wrapper">
-          <img class="card-img" src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" alt="Bacalhau à Braga" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Bacalhau à Braga</h3>
-          <p class="card-desc">Bacalhau frito, batatas às rodelas e cebolada dourada em azeite virgem extra.</p>
-          <button class="btn-action" onclick="openModal('Bacalhau à Braga')">Obter Código de Desconto 🚀</button>
-        </div>
-      </div>
+  <div class="categories">
+    <div class="cat-chip active" onclick="filterCat('all')">🔥 Todos</div>
+    <div class="cat-chip" onclick="filterCat('bacalhau')">🐟 Bacalhau à Braga</div>
+    <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas</div>
+    <div class="cat-chip" onclick="filterCat('africana')">✨ Novidades & Brevemente</div>
+  </div>
 
-      <!-- Attiéké -->
-      <div class="card">
-        <div class="card-img-wrapper">
-          <img class="card-img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Attiéké &amp; Peixe Frito" />
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Attiéké &amp; Peixe Frito</h3>
-          <p class="card-desc">Especialidade exclusiva com atiéké fresco, peixe frito crocante e bananas maduras.</p>
-          <button class="btn-action" onclick="openModal('Attiéké com Peixe Frito')">Obter Código de Desconto 🚀</button>
+  <div class="section-title">
+    Restaurantes e Especialidades em Destaque
+  </div>
+
+  <div class="grid" id="cardGrid">
+
+    <!-- Bacalhau à Narcisa / Braga -->
+    <div class="card" data-category="bacalhau" onclick="openModal('Bacalhau à Narcisa / Braga', 'O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional da região do Minho.', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80');">
+        <div class="badge">★ 4.9 Especialidade</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Bacalhau à Narcisa / Braga</div>
+        <div class="card-desc">O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional do Minho.</div>
+        <div class="card-footer">
+          <span>📍 Centro Histórico</span>
+          <span style="color: var(--primary-red); font-weight: 700;">€€</span>
         </div>
       </div>
     </div>
+
+    <!-- Pudim Abade de Priscos -->
+    <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas de ovo e toucinho, com calda de caramelo.', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80');">
+        <div class="badge">★ 4.8 Conventual</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Pudim Abade de Priscos</div>
+        <div class="card-desc">Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas e toucinho.</div>
+        <div class="card-footer">
+          <span>📍 Sé de Braga</span>
+          <span style="color: var(--primary-red); font-weight: 700;">€</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plat Attieké - Image locale 1cac91acdc56b8154ab1f3fbb54a3fd2.jpg -->
+    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Em Breve)', 'Attieké fresco de alta qualidade, peixe frito crocante, vinagrete de tomate/cebola e maionese.', '1cac91acdc56b8154ab1f3fbb54a3fd2.jpg')">
+      <div class="card-img" style="background-image: url('1cac91acdc56b8154ab1f3fbb54a3fd2.jpg');">
+        <div class="badge-soon">✨ Brevemente em Braga</div>
+        <div class="badge">★ Exclusivo</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Attieké com Peixe Frito & Maionese 🇨🇮</div>
+        <div class="card-desc">Attieké fresco premium, peixe frito crocante e vinagrete. Em breve disponível por encomenda.</div>
+        <div class="card-footer">
+          <span>🔮 Em Breve</span>
+          <span style="color: var(--tag-purple); font-weight: 700;">Première</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Modal / Popup Form -->
-  <div id="promoModal" class="modal">
+  <!-- Modal de Detalhes com Formulario Netlify -->
+  <div class="modal" id="restaurantModal" onclick="closeModal(event)">
     <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h3>🎟️ Obter Desconto Exclusivo</h3>
-      <p>Preencha para receber o seu código e apresentar no restaurante:</p>
-
-      <form name="codigo-desconto" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="codigo-desconto" />
-        <input type="hidden" id="selectedPrato" name="restaurante_prato" value="" />
-        <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
-
-        <input type="text" name="nome" placeholder="Seu Nome (Ex: João)" required />
-        <input type="text" name="contacto" placeholder="Seu WhatsApp / E-mail" required />
+      <div class="modal-header" id="modalImg">
+        <button class="close-modal" onclick="closeModalDirect()">×</button>
+      </div>
+      <div class="modal-body">
+        <h2 id="modalTitle">Título</h2>
+        <p id="modalDesc">Descrição...</p>
         
-        <button type="submit" class="btn-action">Obter Código de Desconto 🚀</button>
-      </form>
+        <!-- Formulario Netlify para rastrear pedidos/promos -->
+        <form name="codigo-desconto" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="codigo-desconto" />
+          <input type="hidden" id="modalPratoInput" name="prato_selecionado" value="" />
+          <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
+
+          <input type="text" name="nome" class="form-input" placeholder="Seu Nome (Ex: João)" required />
+          <input type="text" name="contacto" class="form-input" placeholder="Seu WhatsApp ou E-mail" required />
+          
+          <button type="submit" class="btn-reserve">🎟️ Receber Desconto / Reservar</button>
+        </form>
+      </div>
     </div>
   </div>
 
   <script>
-    function openModal(pratoNome) {
-      document.getElementById('selectedPrato').value = pratoNome;
-      document.getElementById('promoModal').style.display = 'flex';
+    function openModal(title, desc, imgUrl) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('modalPratoInput').value = title;
+      document.getElementById('modalImg').style.backgroundImage = `url('${imgUrl}')`;
+      document.getElementById('restaurantModal').style.display = 'flex';
     }
-    function closeModal() {
-      document.getElementById('promoModal').style.display = 'none';
+    function closeModalDirect() {
+      document.getElementById('restaurantModal').style.display = 'none';
+    }
+    function closeModal(e) {
+      if(e.target.id === 'restaurantModal') {
+        document.getElementById('restaurantModal').style.display = 'none';
+      }
+    }
+    function filterCards() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let cards = document.getElementsByClassName('card');
+      for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].querySelector('.card-title').innerText.toLowerCase();
+        let desc = cards[i].querySelector('.card-desc').innerText.toLowerCase();
+        if (title.includes(input) || desc.includes(input)) {
+          cards[i].style.display = "block";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
     }
   </script>
-
 </body>
 </html>
