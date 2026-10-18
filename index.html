@@ -3,57 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TasteBraga — O Guia Gastronómico de Braga</title>
+  <title>TasteBraga — Gastronomia</title>
   <style>
     :root {
       --primary: #e50914;
-      --bg: #141414;
-      --card-bg: #1f1f1f;
-      --text: #ffffff;
-      --text-muted: #aaaaaa;
+      --bg-dark: #0f0f11;
+      --card-bg: #18181c;
+      --text-light: #ffffff;
+      --text-muted: #a0a0a0;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding-bottom: 50px; }
-    header { background: #000; text-align: center; padding: 25px 15px; border-bottom: 2px solid var(--primary); }
-    header h1 { font-size: 2rem; color: var(--primary); letter-spacing: 1px; }
-    header p { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-light); padding-bottom: 40px; }
     
-    .container { max-width: 1000px; margin: 0 auto; padding: 20px 15px; }
-    .section-title { font-size: 1.4rem; margin-bottom: 20px; text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px; }
+    header { background: #050507; text-align: center; padding: 30px 15px; border-bottom: 2px solid var(--primary); }
+    .logo-container { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+    .logo-img { height: 75px; width: auto; object-fit: contain; }
+    .brand-name { font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+    .brand-name span { color: var(--primary); }
+    .tagline { color: var(--text-muted); font-size: 0.95rem; margin-top: 4px; font-weight: 400; }
     
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s; border: 1px solid #2a2a2a; }
-    .card:hover { transform: translateY(-4px); }
-    .card-img { width: 100%; height: 200px; object-fit: cover; background: #333; }
-    .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
-    .card-title { font-size: 1.2rem; margin-bottom: 8px; color: #fff; }
-    .card-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; line-height: 1.4; }
-    .btn-action { background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; width: 100%; font-size: 0.95rem; }
-    .btn-action:hover { background: #b80710; }
+    .container { max-width: 900px; margin: 0 auto; padding: 25px 15px; }
+    .section-title { font-size: 1.3rem; margin-bottom: 20px; text-align: center; color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
+    .card { background: var(--card-bg); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #282830; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+    .card-img-wrapper { width: 100%; height: 210px; overflow: hidden; position: relative; background: #222; }
+    .card-img { width: 100%; height: 100%; object-fit: cover; }
+    .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-title { font-size: 1.25rem; margin-bottom: 8px; color: #fff; font-weight: 700; }
+    .card-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; flex-grow: 1; line-height: 1.45; }
+    
+    .btn-action { background: var(--primary); color: #fff; border: none; padding: 13px; border-radius: 8px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; width: 100%; font-size: 0.95rem; transition: background 0.2s; }
+    .btn-action:hover { background: #c10711; }
 
-    /* Modal (Popup) Formulario */
+    /* Modal Form (Popup) */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-content { background: var(--card-bg); width: 100%; max-width: 420px; padding: 25px; border-radius: 12px; border: 1px solid #333; position: relative; }
-    .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
-    .modal h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary); }
-    .modal p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
-    .modal input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #444; background: #111; color: #fff; }
+    .modal-content { background: var(--card-bg); width: 100%; max-width: 400px; padding: 25px; border-radius: 14px; border: 1px solid #333; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
+    .close-btn { position: absolute; top: 12px; right: 16px; font-size: 1.6rem; color: var(--text-muted); cursor: pointer; }
+    .modal h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--primary); }
+    .modal p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
+    .modal input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #3a3a45; background: #0c0c0e; color: #fff; font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>TasteBraga</h1>
-    <p>Os Melhores Pratos & Restaurantes de Braga com Descontos Exclusivos</p>
+    <div class="logo-container">
+      <div class="brand-name"><span>T</span>aste<span>B</span>raga</div>
+      <p class="tagline">Gastronomia &amp; Descontos Exclusivos em Braga</p>
+    </div>
   </header>
 
   <div class="container">
     <h2 class="section-title">🔥 Especialidades em Destaque</h2>
     
     <div class="grid">
-      <!-- Card 1: Francesinha -->
+      <!-- Francesinha -->
       <div class="card">
-        <div class="card-img" style="background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+        <div class="card-img-wrapper">
+          <img class="card-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Francesinha Tradicional" />
+        </div>
         <div class="card-body">
           <h3 class="card-title">Francesinha Tradicional</h3>
           <p class="card-desc">Queijo derretido, carnes selecionadas e o autêntico molho especial de Braga.</p>
@@ -61,9 +70,11 @@
         </div>
       </div>
 
-      <!-- Card 2: Bacalhau -->
+      <!-- Bacalhau à Braga -->
       <div class="card">
-        <div class="card-img" style="background: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+        <div class="card-img-wrapper">
+          <img class="card-img" src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" alt="Bacalhau à Braga" />
+        </div>
         <div class="card-body">
           <h3 class="card-title">Bacalhau à Braga</h3>
           <p class="card-desc">Bacalhau frito, batatas às rodelas e cebolada dourada em azeite virgem extra.</p>
@@ -71,34 +82,36 @@
         </div>
       </div>
 
-      <!-- Card 3: Attiéké -->
+      <!-- Attiéké -->
       <div class="card">
-        <div class="card-img" style="background: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+        <div class="card-img-wrapper">
+          <img class="card-img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Attiéké &amp; Peixe Frito" />
+        </div>
         <div class="card-body">
-          <h3 class="card-title">Attiéké & Peixe Frito</h3>
-          <p class="card-desc">Especialidade africana exclusiva em Braga com peixe frito crocante e bananas maduras.</p>
+          <h3 class="card-title">Attiéké &amp; Peixe Frito</h3>
+          <p class="card-desc">Especialidade exclusiva com atiéké fresco, peixe frito crocante e bananas maduras.</p>
           <button class="btn-action" onclick="openModal('Attiéké com Peixe Frito')">Obter Código de Desconto 🚀</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal / Formulario Popup -->
+  <!-- Modal / Popup Form -->
   <div id="promoModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h3>🎟️ Garantir Desconto Exclusivo</h3>
-      <p>Introduza o seu contacto para gerar o código e ser redirecionado para a e-reserva do restaurante:</p>
+      <h3>🎟️ Obter Desconto Exclusivo</h3>
+      <p>Preencha para receber o seu código e apresentar no restaurante:</p>
 
       <form name="codigo-desconto" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="codigo-desconto" />
         <input type="hidden" id="selectedPrato" name="restaurante_prato" value="" />
         <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
 
-        <input type="text" name="nome" placeholder="O seu nome" required />
-        <input type="text" name="contacto" placeholder="Seu WhatsApp ou E-mail" required />
+        <input type="text" name="nome" placeholder="Seu Nome (Ex: João)" required />
+        <input type="text" name="contacto" placeholder="Seu WhatsApp / E-mail" required />
         
-        <button type="submit" class="btn-action">Ver Oferta & Reservar 📲</button>
+        <button type="submit" class="btn-action">Obter Código de Desconto 🚀</button>
       </form>
     </div>
   </div>
