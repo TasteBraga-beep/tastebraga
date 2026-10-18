@@ -15,6 +15,7 @@
       --text-muted: #9CA3AF;
       --border-color: #262B36;
       --tag-orange: #D97706;
+      --tag-purple: #8B5CF6;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -62,7 +63,6 @@
     .cat-chip.active { background-color: var(--primary-red); border-color: var(--primary-red); }
 
     .section-title { font-size: 1.3rem; font-weight: 700; margin: 24px 20px 16px; display: flex; justify-content: space-between; align-items: center; }
-    .section-title span { font-size: 0.85rem; color: var(--primary-red); cursor: pointer; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
     .card {
@@ -76,8 +76,8 @@
       backdrop-filter: blur(4px); color: #FFD700; padding: 4px 10px; border-radius: 8px;
       font-size: 0.8rem; font-weight: 700;
     }
-    .badge-order {
-      position: absolute; top: 12px; left: 12px; background: var(--tag-orange);
+    .badge-soon {
+      position: absolute; top: 12px; left: 12px; background: var(--tag-purple);
       color: white; padding: 4px 10px; border-radius: 8px;
       font-size: 0.75rem; font-weight: 700;
     }
@@ -126,7 +126,7 @@
 
   <section class="hero">
     <h1>Descubra a melhor<br><span style="color: var(--primary-red);">Gastronomia de Braga</span></h1>
-    <p>Pratos típicos, sobremesas conventuais e especialidades do mundo por encomenda.</p>
+    <p>Guia dos melhores restaurantes, pratos típicos e novidades culinárias em Braga.</p>
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="Procurar bacalhau, attieké, pudim..." onkeyup="filterCards()">
     </div>
@@ -135,33 +135,18 @@
   <div class="categories">
     <div class="cat-chip active" onclick="filterCat('all')">🔥 Todos</div>
     <div class="cat-chip" onclick="filterCat('bacalhau')">🐟 Bacalhau à Braga</div>
-    <div class="cat-chip" onclick="filterCat('africana')">🌍 Sabores d'África (Encomenda)</div>
     <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas</div>
+    <div class="cat-chip" onclick="filterCat('africana')">✨ Novidades & Brevemente</div>
   </div>
 
   <div class="section-title">
-    Destaques & Encomendas Especiais
+    Restaurantes e Especialidades em Destaque
   </div>
 
   <div class="grid" id="cardGrid">
-    <!-- Plat Attieké & Poisson Braisé -->
-    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Braised (Côte d\'Ivoire)', 'Autêntica sêmola de mandioca fresca acompanhada de peixe fresco braised, alho, cebolas crocantes e molho picante especial. Preparado artesanalmente sob encomenda.', '⏰ Preparação: 4 horas de antecedência\n📍 Entrega ou Retirada em Braga', 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80')">
-      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80');">
-        <div class="badge-order">⏱️ Por Encomenda (4h)</div>
-        <div class="badge">★ 5.0 Exclusivo</div>
-      </div>
-      <div class="card-content">
-        <div class="card-title">Attieké com Peixe Braisé 🇨🇮</div>
-        <div class="card-desc">O famoso prato ivoirien: attieké fofinho com peixe braisé no carvão e temperos ricos.</div>
-        <div class="card-footer">
-          <span>📦 Sob Encomenda</span>
-          <span style="color: var(--tag-orange); font-weight: 700;">€15.00</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- Bacalhau -->
-    <div class="card" data-category="bacalhau" onclick="openModal('Bacalhau à Narcisa / Braga', 'O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional do Minho.', '📍 Centro Histórico • Aberto até 23h', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
+    <!-- Bacalhau à Narcisa / Braga -->
+    <div class="card" data-category="bacalhau" onclick="openModal('Bacalhau à Narcisa / Braga', 'O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional da região do Minho.', '📍 Centro Histórico de Braga • Aberto até às 23h', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80', 'Ver Restaurante', 'https://tastebraga.pt')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80');">
         <div class="badge">★ 4.9 Especialidade</div>
       </div>
@@ -175,8 +160,8 @@
       </div>
     </div>
 
-    <!-- Pudim -->
-    <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas e toucinho.', '📍 Sé de Braga • Aberto até 20h', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
+    <!-- Pudim Abade de Priscos -->
+    <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas de ovo e toucinho, com calda de caramelo.', '📍 Sé de Braga • Aberto até às 20h', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80', 'Ver Doçaria', 'https://tastebraga.pt')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80');">
         <div class="badge">★ 4.8 Conventual</div>
       </div>
@@ -189,9 +174,26 @@
         </div>
       </div>
     </div>
+
+    <!-- Plat Attieké - En mode "Brevemente / Teaser" (Sécurisé) -->
+    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Em Breve)', 'Estamos a preparar uma experiência culinária africana exclusiva para Braga! Attieké fresco de alta qualidade, peixe frito crocante, vinagrete de tomate/cebola e maionese.', '✨ Lançamento Exclusivo em Breve na TasteBraga\n📩 Quer ser notificado quando estiver disponível?', 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80', 'Quero ser Notificado(a)', 'https://wa.me/?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20lançamento%20do%20Attieké%20em%20Braga')">
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80');">
+        <div class="badge-soon">✨ Brevemente em Braga</div>
+        <div class="badge">★ Exclusivo</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Attieké com Peixe Frito & Maionese 🇨🇮</div>
+        <div class="card-desc">Attieké fresco premium, peixe frito crocante e vinagrete. Em breve disponível por encomenda.</div>
+        <div class="card-footer">
+          <span>🔮 Em Breve</span>
+          <span style="color: var(--tag-purple); font-weight: 700;">Premère</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Fenêtre Modale de détail -->
+  <!-- Modal de Détails -->
   <div class="modal" id="restaurantModal" onclick="closeModal(event)">
     <div class="modal-content">
       <div class="modal-header" id="modalImg">
@@ -201,17 +203,22 @@
         <h2 id="modalTitle">Título</h2>
         <p id="modalDesc">Descrição...</p>
         <div class="modal-info" id="modalInfo">Informações...</div>
-        <button class="btn-reserve" onclick="alert('Encomenda / Reserva efetuada com sucesso! Entraremos em contacto.')">Fazer Encomenda / Reservar</button>
+        <a id="modalBtn" href="#" class="btn-reserve" target="_blank">Ação</a>
       </div>
     </div>
   </div>
 
   <script>
-    function openModal(title, desc, info, imgUrl) {
+    function openModal(title, desc, info, imgUrl, btnText, btnLink) {
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalDesc').innerText = desc;
       document.getElementById('modalInfo').innerText = info;
       document.getElementById('modalImg').style.backgroundImage = `url('${imgUrl}')`;
+      
+      let actionBtn = document.getElementById('modalBtn');
+      actionBtn.innerText = btnText || 'Mais Informações';
+      actionBtn.href = btnLink || '#';
+      
       document.getElementById('restaurantModal').style.display = 'flex';
     }
     function closeModalDirect() {
