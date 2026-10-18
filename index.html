@@ -21,7 +21,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
     body { background-color: var(--bg-dark); color: var(--text-white); padding-bottom: 50px; }
 
-    /* Header Sticky Premium */
+    /* Header Sticky */
     header {
       display: flex; justify-content: space-between; align-items: center;
       padding: 14px 24px; background-color: rgba(20, 23, 31, 0.95);
@@ -40,7 +40,7 @@
     }
     .btn-partner:hover { transform: translateY(-2px); }
 
-    /* Hero Heroic Slider / Carrousel */
+    /* Hero Slider Dynamique (Exclusivité Plats Centrés) */
     .hero-slider {
       position: relative; width: 100%; height: 320px; overflow: hidden;
       border-bottom: 1px solid var(--border-color);
@@ -150,24 +150,24 @@
     <a href="mailto:tastebraga@gmail.com?subject=Sou%20Restaurante%20-%20Parceria%20TasteBraga" class="btn-partner">Sou Restaurante</a>
   </header>
 
-  <!-- Hero Slider Dynamique -->
+  <!-- Hero Slider Dynamique (Focus Plats) -->
   <div class="hero-slider">
-    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=80');">
+    <div class="slide active" style="background-image: url('https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=');">
       <div class="slide-overlay">
-        <h2>🐟 Bacalhau à Braga</h2>
-        <p>A receita histórica da região do Minho com crocante e cebolada especial.</p>
+        <h2>🦆 Arroz de Pato Tradicional</h2>
+        <p>A receita autêntica ao estilo tradicional do Minho.</p>
       </div>
     </div>
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80');">
+    <div class="slide" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
       <div class="slide-overlay">
-        <h2>🔥 Francesinha à Moda de Braga</h2>
-        <p>Molho denso, carnes grelhadas e queijo derretido de alta qualidade.</p>
+        <h2>🐟 Especialidades Típicas de Braga</h2>
+        <p>Os sabores autênticos selecionados para os apreciadores da boa mesa.</p>
       </div>
     </div>
     <div class="slide" style="background-image: url('1cac91acdc56b8154ab1f3fbb54a3fd2.jpg');">
       <div class="slide-overlay">
         <h2>✨ Attiéké com Peixe Frito</h2>
-        <p>A novidade gastronómica exclusiva em breve em Braga.</p>
+        <p>A novidade exótica exclusiva em breve em Braga.</p>
       </div>
     </div>
   </div>
@@ -175,7 +175,7 @@
   <!-- Search Box -->
   <div class="search-container">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Procurar bacalhau, sarrabulho, francesinha..." onkeyup="filterCards()">
+      <input type="text" id="searchInput" placeholder="Procurar arroz de pato, bacalhau, pudim..." onkeyup="filterCards()">
     </div>
   </div>
 
@@ -183,7 +183,6 @@
   <div class="categories">
     <div class="cat-chip active" onclick="filterCat('all')">🔥 Todos</div>
     <div class="cat-chip" onclick="filterCat('historicos')">🏛️ Pratos Históricos</div>
-    <div class="cat-chip" onclick="filterCat('francesinha')">🥪 Francesinhas</div>
     <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas</div>
     <div class="cat-chip" onclick="filterCat('africana')">✨ Exclusivos</div>
   </div>
@@ -195,46 +194,31 @@
   <!-- Menu Cards Grid -->
   <div class="grid" id="cardGrid">
 
-    <!-- Bacalhau à Braga -->
-    <div class="card" data-category="historicos" onclick="openModal('Bacalhau à Braga (à Narcisa)', 'O autêntico bacalhau frito em azeite, com fatias de presunto, batatas às rodelas e cebolada dourada.', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
-      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80');">
+    <!-- Arroz de Pato -->
+    <div class="card" data-category="historicos" onclick="openModal('Arroz de Pato Tradicional', 'O autêntico Arroz de Pato confecionado ao estilo tradicional do Minho, dourado no forno e servido com rodelas de chouriço.', 'https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=')">
+      <div class="card-img" style="background-image: url('https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=');">
         <div class="badge">★ 4.9 Histórico</div>
       </div>
       <div class="card-content">
-        <div class="card-title">Bacalhau à Braga (à Narcisa)</div>
-        <div class="card-desc">Bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e uma saborosa cebolada.</div>
+        <div class="card-title">Arroz de Pato Tradicional</div>
+        <div class="card-desc">Arroz de pato estufado no forno, enriquecido com chouriço e aromas do Minho.</div>
         <div class="card-footer">
-          <span>📍 Ícone de Braga</span>
+          <span>📍 Receita Típica</span>
           <span style="color: var(--primary-red); font-weight: 800;">€€</span>
         </div>
       </div>
     </div>
 
-    <!-- Francesinha à Moda de Braga -->
-    <div class="card" data-category="francesinha" onclick="openModal('Francesinha à Moda de Braga', 'Pão de forma tostado, linguiça, salsicha fresca, fiambre e bife de novilho, coberto com queijo e molho picante.', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80')">
-      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80');">
-        <div class="badge">★ 4.9 Favorito</div>
+    <!-- Especialidade Tradicional -->
+    <div class="card" data-category="historicos" onclick="openModal('Prato Típico de Braga', 'Seleção especial dos sabores mais autênticos e tradicionais confecionados pelos mestres da região.', 'https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg')">
+      <div class="card-img" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
+        <div class="badge">★ 4.9 Especialidade</div>
       </div>
       <div class="card-content">
-        <div class="card-title">Francesinha à Moda de Braga</div>
-        <div class="card-desc">Recheio generoso com carnes selecionadas e o famoso molho artesanal secreto de Braga.</div>
+        <div class="card-title">Prato Típico & Papas de Sarrabulho</div>
+        <div class="card-desc">Uma iguaria rica e reconfortante da tradição gastronómica bracarense.</div>
         <div class="card-footer">
-          <span>📍 Centro Urbano</span>
-          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Papas de Sarrabulho -->
-    <div class="card" data-category="historicos" onclick="openModal('Papas de Sarrabulho & Arroz de Pato', 'Prato tradicional bracarense confecionado com carnes variadas, pão, sangue e temperos típicos do Minho.', 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80')">
-      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80');">
-        <div class="badge">★ 4.8 Tradicional</div>
-      </div>
-      <div class="card-content">
-        <div class="card-title">Papas de Sarrabulho / Arroz de Pato</div>
-        <div class="card-desc">Uma iguaria secular e reconfortante, riqueza gastronómica inconfundível do Minho.</div>
-        <div class="card-footer">
-          <span>📍 Gastronomia Típica</span>
+          <span>📍 Centro Histórico</span>
           <span style="color: var(--primary-red); font-weight: 800;">€€</span>
         </div>
       </div>
