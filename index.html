@@ -86,7 +86,7 @@
     .card-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
     .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-muted); }
 
-    /* Modal de Détails */
+    /* Modal de Detalhes */
     .modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000;
@@ -121,7 +121,7 @@
       <img src="https://avatars.githubusercontent.com/u/344043097?v=4&size=64" alt="Logo TasteBraga" class="logo-img">
       <div class="logo-text"><span style="color: var(--primary-red);">T</span>aste<span style="color: var(--primary-red);">B</span>raga</div>
     </div>
-    <a href="#parceiros" class="btn-partner">Sou Restaurante</a>
+    <a href="mailto:tartsbraga@gmail.com?subject=Sou%20Restaurante%20-%20Parceria%20TasteBraga" class="btn-partner">Sou Restaurante</a>
   </header>
 
   <section class="hero">
@@ -175,9 +175,9 @@
       </div>
     </div>
 
-    <!-- Plat Attieké - Avec la photo exacte validée -->
-    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Em Breve)', 'Estamos a preparar uma experiência culinária africana exclusiva para Braga! Attieké fresco de alta qualidade, peixe frito crocante, vinagrete de tomate/cebola e maionese.', '✨ Lançamento Exclusivo em Breve na TasteBraga\n📩 Quer ser notificado quando estiver disponível?', 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80', 'Quero ser Notificado(a)', 'https://wa.me/?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20lançamento%20do%20Attieké%20em%20Braga')">
-      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80');">
+    <!-- Plat Attieké com Peixe Frito -->
+    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Em Breve)', 'Estamos a preparar uma experiência culinária africana exclusiva para Braga! Attieké fresco de alta qualidade, peixe frito crocante, vinagrete de tomate/cebola e maionese.', '✨ Lançamento Exclusivo em Breve na TasteBraga\n📩 Envie-nos um e-mail para ser notificado em primeira mão!', 'https://share.google/6asIxOiQKfXNtGN66', '✉️ Quero ser notificado por E-mail', 'mailto:tartsbraga@gmail.com?subject=Interesse%20no%20Attieke%20-%20TasteBraga&body=Ola!%20Gostaria%20de%20ser%20notificado(a)%20quando%20o%20prato%20de%20Attieke%20estiver%20disponivel%20em%20Braga.')">
+      <div class="card-img" style="background-image: url('https://share.google/6asIxOiQKfXNtGN66');">
         <div class="badge-soon">✨ Brevemente em Braga</div>
         <div class="badge">★ Exclusivo</div>
       </div>
@@ -193,7 +193,7 @@
 
   </div>
 
-  <!-- Modal de Détails -->
+  <!-- Modal de Detalhes -->
   <div class="modal" id="restaurantModal" onclick="closeModal(event)">
     <div class="modal-content">
       <div class="modal-header" id="modalImg">
