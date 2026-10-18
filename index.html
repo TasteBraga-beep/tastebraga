@@ -3,127 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TasteBraga — A Gastronomia de Braga num só lugar</title>
+  <title>TasteBraga — A Gastronomia Histórica de Braga</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-red: #C8102E;
       --accent-red: #E31837;
-      --bg-dark: #0F1115;
-      --card-bg: #181B22;
+      --bg-dark: #0B0C0E;
+      --card-bg: #14171F;
       --text-white: #FFFFFF;
       --text-muted: #9CA3AF;
-      --border-color: #262B36;
-      --tag-orange: #D97706;
+      --border-color: #222733;
+      --tag-gold: #D97706;
       --tag-purple: #8B5CF6;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-white); padding-bottom: 40px; }
+    body { background-color: var(--bg-dark); color: var(--text-white); padding-bottom: 50px; }
 
+    /* Header Sticky Premium */
     header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 24px; background-color: rgba(24, 27, 34, 0.9);
-      backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+      padding: 14px 24px; background-color: rgba(20, 23, 31, 0.95);
+      backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100;
       border-bottom: 1px solid var(--border-color);
     }
-    .logo-container { display: flex; align-items: center; gap: 10px; }
-    .logo-img { width: 38px; height: 38px; object-fit: cover; border-radius: 50%; border: 2px solid var(--primary-red); }
-    .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--text-white); }
+    .logo-container { display: flex; align-items: center; gap: 12px; }
+    .logo-img { width: 42px; height: 42px; object-fit: cover; border-radius: 50%; border: 2px solid var(--primary-red); box-shadow: 0 0 10px rgba(200, 16, 46, 0.4); }
+    .logo-text { font-size: 1.5rem; font-weight: 800; color: var(--text-white); letter-spacing: -0.5px; }
     
     .btn-partner {
       background: linear-gradient(135deg, var(--primary-red), var(--accent-red));
-      color: white; border: none; padding: 10px 18px; font-weight: 700;
-      border-radius: 8px; cursor: pointer; text-decoration: none; font-size: 0.9rem;
+      color: white; border: none; padding: 10px 20px; font-weight: 700;
+      border-radius: 10px; cursor: pointer; text-decoration: none; font-size: 0.88rem;
+      box-shadow: 0 4px 14px rgba(200, 16, 46, 0.35); transition: transform 0.2s;
     }
+    .btn-partner:hover { transform: translateY(-2px); }
 
-    .hero {
-      text-align: center; padding: 48px 20px 32px;
-      background: radial-gradient(circle at top, rgba(200, 16, 46, 0.15) 0%, transparent 70%);
+    /* Hero Heroic Slider / Carrousel */
+    .hero-slider {
+      position: relative; width: 100%; height: 320px; overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
     }
-    .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
-    .hero p { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin: 0 auto 24px; }
+    .slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover; background-position: center; opacity: 0;
+      transition: opacity 1s ease-in-out; display: flex; align-items: flex-end;
+    }
+    .slide.active { opacity: 1; }
+    .slide-overlay {
+      width: 100%; padding: 40px 24px 24px;
+      background: linear-gradient(to top, rgba(11, 12, 14, 0.95) 0%, rgba(11, 12, 14, 0.4) 60%, transparent 100%);
+    }
+    .slide-overlay h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .slide-overlay p { color: var(--text-muted); font-size: 0.95rem; }
 
+    .search-container { max-width: 600px; margin: -25px auto 20px; padding: 0 20px; position: relative; z-index: 10; }
     .search-box {
-      max-width: 480px; margin: 0 auto; display: flex; gap: 8px;
-      background-color: var(--card-bg); padding: 8px; border-radius: 12px;
-      border: 1px solid var(--border-color);
+      display: flex; gap: 8px; background-color: var(--card-bg); padding: 10px 14px;
+      border-radius: 14px; border: 1px solid var(--border-color); box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     }
     .search-box input {
       flex: 1; background: transparent; border: none; outline: none;
-      color: white; padding: 8px 12px; font-size: 0.95rem;
+      color: white; font-size: 0.95rem;
     }
 
-    .categories { display: flex; gap: 12px; overflow-x: auto; padding: 24px 20px; scrollbar-width: none; }
+    /* Categories Horizontal Scroll */
+    .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
     .cat-chip {
       background-color: var(--card-bg); border: 1px solid var(--border-color);
-      color: var(--text-white); padding: 8px 16px; border-radius: 20px;
-      font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer;
+      color: var(--text-white); padding: 9px 18px; border-radius: 25px;
+      font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.2s;
     }
-    .cat-chip.active { background-color: var(--primary-red); border-color: var(--primary-red); }
+    .cat-chip.active, .cat-chip:hover { background-color: var(--primary-red); border-color: var(--primary-red); }
 
-    .section-title { font-size: 1.3rem; font-weight: 700; margin: 24px 20px 16px; display: flex; justify-content: space-between; align-items: center; }
+    .section-title { font-size: 1.35rem; font-weight: 800; margin: 25px 20px 15px; display: flex; justify-content: space-between; align-items: center; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
+    /* Cards Grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; padding: 0 20px; }
     .card {
-      background-color: var(--card-bg); border-radius: 16px; overflow: hidden;
-      border: 1px solid var(--border-color); transition: transform 0.2s; cursor: pointer;
+      background-color: var(--card-bg); border-radius: 18px; overflow: hidden;
+      border: 1px solid var(--border-color); transition: transform 0.25s, box-shadow 0.25s; cursor: pointer;
     }
-    .card:hover { transform: translateY(-4px); }
-    .card-img { height: 160px; background-size: cover; background-position: center; position: relative; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-color: #333948; }
+    .card-img { height: 180px; background-size: cover; background-position: center; position: relative; }
     .badge {
-      position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px); color: #FFD700; padding: 4px 10px; border-radius: 8px;
-      font-size: 0.8rem; font-weight: 700;
+      position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px); color: #FFD700; padding: 5px 12px; border-radius: 10px;
+      font-size: 0.78rem; font-weight: 700; border: 1px solid rgba(255,215,0,0.3);
     }
     .badge-soon {
       position: absolute; top: 12px; left: 12px; background: var(--tag-purple);
-      color: white; padding: 4px 10px; border-radius: 8px;
+      color: white; padding: 5px 12px; border-radius: 10px;
       font-size: 0.75rem; font-weight: 700;
     }
-    .card-content { padding: 16px; }
-    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-    .card-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
-    .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-muted); }
+    .card-content { padding: 18px; }
+    .card-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: #fff; }
+    .card-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 16px; line-height: 1.45; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; color: var(--text-muted); }
 
-    /* Modal de Detalhes & Formulario Netlify */
+    /* Modal Formulario Netlify */
     .modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 1000;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(8px); z-index: 1000;
       justify-content: center; align-items: center; padding: 20px;
     }
     .modal-content {
-      background: var(--card-bg); width: 100%; max-width: 480px; border-radius: 20px;
+      background: var(--card-bg); width: 100%; max-width: 460px; border-radius: 22px;
       overflow: hidden; border: 1px solid var(--border-color); animation: fadeIn 0.3s ease;
-      position: relative;
+      position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.8);
     }
-    .modal-header { height: 180px; background-size: cover; background-position: center; position: relative; }
+    .modal-header { height: 170px; background-size: cover; background-position: center; position: relative; }
     .close-modal {
-      position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6);
-      color: white; border: none; width: 32px; height: 32px; border-radius: 50%;
-      font-weight: bold; cursor: pointer; font-size: 1.1rem;
+      position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.7);
+      color: white; border: none; width: 34px; height: 34px; border-radius: 50%;
+      font-weight: bold; cursor: pointer; font-size: 1.2rem;
     }
-    .modal-body { padding: 20px; }
-    .modal-body h2 { font-size: 1.3rem; margin-bottom: 6px; }
-    .modal-body p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px; }
+    .modal-body { padding: 22px; }
+    .modal-body h2 { font-size: 1.35rem; margin-bottom: 6px; color: #fff; }
+    .modal-body p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px; }
     
     .form-input {
-      width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px;
-      border: 1px solid var(--border-color); background: #0F1115; color: white;
-      font-size: 0.9rem; outline: none;
+      width: 100%; padding: 13px; margin-bottom: 12px; border-radius: 10px;
+      border: 1px solid var(--border-color); background: #0B0C0E; color: white;
+      font-size: 0.92rem; outline: none; transition: border-color 0.2s;
     }
     .form-input:focus { border-color: var(--primary-red); }
 
     .btn-reserve {
-      display: block; width: 100%; background: var(--primary-red); color: white;
-      text-align: center; padding: 12px; border-radius: 10px; font-weight: 700;
-      text-decoration: none; border: none; cursor: pointer; font-size: 0.95rem; margin-top: 5px;
+      display: block; width: 100%; background: linear-gradient(135deg, var(--primary-red), var(--accent-red));
+      color: white; text-align: center; padding: 14px; border-radius: 12px; font-weight: 800;
+      text-decoration: none; border: none; cursor: pointer; font-size: 1rem; margin-top: 5px;
+      box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
     }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <div class="logo-container">
       <img src="https://avatars.githubusercontent.com/u/344043097?v=4&size=64" alt="Logo TasteBraga" class="logo-img">
@@ -132,76 +150,130 @@
     <a href="mailto:tastebraga@gmail.com?subject=Sou%20Restaurante%20-%20Parceria%20TasteBraga" class="btn-partner">Sou Restaurante</a>
   </header>
 
-  <section class="hero">
-    <h1>Descubra a melhor<br><span style="color: var(--primary-red);">Gastronomia de Braga</span></h1>
-    <p>Guia dos melhores restaurantes, pratos típicos e novidades culinárias em Braga.</p>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Procurar bacalhau, attieké, pudim..." onkeyup="filterCards()">
+  <!-- Hero Slider Dynamique -->
+  <div class="hero-slider">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=80');">
+      <div class="slide-overlay">
+        <h2>🐟 Bacalhau à Braga</h2>
+        <p>A receita histórica da região do Minho com crocante e cebolada especial.</p>
+      </div>
     </div>
-  </section>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80');">
+      <div class="slide-overlay">
+        <h2>🔥 Francesinha à Moda de Braga</h2>
+        <p>Molho denso, carnes grelhadas e queijo derretido de alta qualidade.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('1cac91acdc56b8154ab1f3fbb54a3fd2.jpg');">
+      <div class="slide-overlay">
+        <h2>✨ Attiéké com Peixe Frito</h2>
+        <p>A novidade gastronómica exclusiva em breve em Braga.</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- Search Box -->
+  <div class="search-container">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Procurar bacalhau, sarrabulho, francesinha..." onkeyup="filterCards()">
+    </div>
+  </div>
+
+  <!-- Filter Categories -->
   <div class="categories">
     <div class="cat-chip active" onclick="filterCat('all')">🔥 Todos</div>
-    <div class="cat-chip" onclick="filterCat('bacalhau')">🐟 Bacalhau à Braga</div>
+    <div class="cat-chip" onclick="filterCat('historicos')">🏛️ Pratos Históricos</div>
+    <div class="cat-chip" onclick="filterCat('francesinha')">🥪 Francesinhas</div>
     <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas</div>
-    <div class="cat-chip" onclick="filterCat('africana')">✨ Novidades & Brevemente</div>
+    <div class="cat-chip" onclick="filterCat('africana')">✨ Exclusivos</div>
   </div>
 
   <div class="section-title">
-    Restaurantes e Especialidades em Destaque
+    Especialidades Históricas de Braga
   </div>
 
+  <!-- Menu Cards Grid -->
   <div class="grid" id="cardGrid">
 
-    <!-- Bacalhau à Narcisa / Braga -->
-    <div class="card" data-category="bacalhau" onclick="openModal('Bacalhau à Narcisa / Braga', 'O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional da região do Minho.', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
+    <!-- Bacalhau à Braga -->
+    <div class="card" data-category="historicos" onclick="openModal('Bacalhau à Braga (à Narcisa)', 'O autêntico bacalhau frito em azeite, com fatias de presunto, batatas às rodelas e cebolada dourada.', 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80');">
-        <div class="badge">★ 4.9 Especialidade</div>
+        <div class="badge">★ 4.9 Histórico</div>
       </div>
       <div class="card-content">
-        <div class="card-title">Bacalhau à Narcisa / Braga</div>
-        <div class="card-desc">O autêntico bacalhau frito com cebolada e batatas às rodelas, receita tradicional do Minho.</div>
+        <div class="card-title">Bacalhau à Braga (à Narcisa)</div>
+        <div class="card-desc">Bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e uma saborosa cebolada.</div>
         <div class="card-footer">
-          <span>📍 Centro Histórico</span>
-          <span style="color: var(--primary-red); font-weight: 700;">€€</span>
+          <span>📍 Ícone de Braga</span>
+          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Francesinha à Moda de Braga -->
+    <div class="card" data-category="francesinha" onclick="openModal('Francesinha à Moda de Braga', 'Pão de forma tostado, linguiça, salsicha fresca, fiambre e bife de novilho, coberto com queijo e molho picante.', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80')">
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80');">
+        <div class="badge">★ 4.9 Favorito</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Francesinha à Moda de Braga</div>
+        <div class="card-desc">Recheio generoso com carnes selecionadas e o famoso molho artesanal secreto de Braga.</div>
+        <div class="card-footer">
+          <span>📍 Centro Urbano</span>
+          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Papas de Sarrabulho -->
+    <div class="card" data-category="historicos" onclick="openModal('Papas de Sarrabulho & Arroz de Pato', 'Prato tradicional bracarense confecionado com carnes variadas, pão, sangue e temperos típicos do Minho.', 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80')">
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80');">
+        <div class="badge">★ 4.8 Tradicional</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Papas de Sarrabulho / Arroz de Pato</div>
+        <div class="card-desc">Uma iguaria secular e reconfortante, riqueza gastronómica inconfundível do Minho.</div>
+        <div class="card-footer">
+          <span>📍 Gastronomia Típica</span>
+          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
         </div>
       </div>
     </div>
 
     <!-- Pudim Abade de Priscos -->
-    <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas de ovo e toucinho, com calda de caramelo.', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
+    <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Doce conventual único criado em Braga no séc. XIX, rico em gemas de ovo, açúcar e o toque distinto de toucinho.', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80');">
-        <div class="badge">★ 4.8 Conventual</div>
+        <div class="badge">★ 5.0 Conventual</div>
       </div>
       <div class="card-content">
         <div class="card-title">Pudim Abade de Priscos</div>
-        <div class="card-desc">Uma das 7 maravilhas da gastronomia portuguesa, rico em gemas e toucinho.</div>
+        <div class="card-desc">Uma das 7 Maravilhas da Gastronomia Portuguesa, um pudim aveludado e irresistível.</div>
         <div class="card-footer">
           <span>📍 Sé de Braga</span>
-          <span style="color: var(--primary-red); font-weight: 700;">€</span>
+          <span style="color: var(--primary-red); font-weight: 800;">€</span>
         </div>
       </div>
     </div>
 
-    <!-- Plat Attieké - Image locale 1cac91acdc56b8154ab1f3fbb54a3fd2.jpg -->
-    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Em Breve)', 'Attieké fresco de alta qualidade, peixe frito crocante, vinagrete de tomate/cebola e maionese.', '1cac91acdc56b8154ab1f3fbb54a3fd2.jpg')">
+    <!-- Plat Attieké -->
+    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Em Breve)', 'Attieké fresco premium, peixe frito crocante, vinagrete de tomate/cebola e maionese.', '1cac91acdc56b8154ab1f3fbb54a3fd2.jpg')">
       <div class="card-img" style="background-image: url('1cac91acdc56b8154ab1f3fbb54a3fd2.jpg');">
         <div class="badge-soon">✨ Brevemente em Braga</div>
         <div class="badge">★ Exclusivo</div>
       </div>
       <div class="card-content">
         <div class="card-title">Attieké com Peixe Frito & Maionese 🇨🇮</div>
-        <div class="card-desc">Attieké fresco premium, peixe frito crocante e vinagrete. Em breve disponível por encomenda.</div>
+        <div class="card-desc">A iguaria africana mais apreciada, brevemente disponível por encomenda exclusiva em Braga.</div>
         <div class="card-footer">
           <span>🔮 Em Breve</span>
-          <span style="color: var(--tag-purple); font-weight: 700;">Première</span>
+          <span style="color: var(--tag-purple); font-weight: 800;">Première</span>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Modal de Detalhes com Formulario Netlify -->
+  <!-- Modal Netlify Forms -->
   <div class="modal" id="restaurantModal" onclick="closeModal(event)">
     <div class="modal-content">
       <div class="modal-header" id="modalImg">
@@ -211,22 +283,32 @@
         <h2 id="modalTitle">Título</h2>
         <p id="modalDesc">Descrição...</p>
         
-        <!-- Formulario Netlify para rastrear pedidos/promos -->
         <form name="codigo-desconto" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="codigo-desconto" />
           <input type="hidden" id="modalPratoInput" name="prato_selecionado" value="" />
           <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
 
-          <input type="text" name="nome" class="form-input" placeholder="Seu Nome (Ex: João)" required />
+          <input type="text" name="nome" class="form-input" placeholder="Seu Nome (Ex: João Silva)" required />
           <input type="text" name="contacto" class="form-input" placeholder="Seu WhatsApp ou E-mail" required />
           
-          <button type="submit" class="btn-reserve">🎟️ Receber Desconto / Reservar</button>
+          <button type="submit" class="btn-reserve">🎟️ Receber Desconto Exclusivo</button>
         </form>
       </div>
     </div>
   </div>
 
+  <!-- Scripts carrousel & modale -->
   <script>
+    // Carrousel Automatique
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 4500);
+
+    // Gestao da Modale
     function openModal(title, desc, imgUrl) {
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalDesc').innerText = desc;
@@ -242,17 +324,15 @@
         document.getElementById('restaurantModal').style.display = 'none';
       }
     }
+
+    // Pesquisa
     function filterCards() {
       let input = document.getElementById('searchInput').value.toLowerCase();
       let cards = document.getElementsByClassName('card');
       for (let i = 0; i < cards.length; i++) {
         let title = cards[i].querySelector('.card-title').innerText.toLowerCase();
         let desc = cards[i].querySelector('.card-desc').innerText.toLowerCase();
-        if (title.includes(input) || desc.includes(input)) {
-          cards[i].style.display = "block";
-        } else {
-          cards[i].style.display = "none";
-        }
+        cards[i].style.display = (title.includes(input) || desc.includes(input)) ? "block" : "none";
       }
     }
   </script>
