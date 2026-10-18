@@ -1,22 +1,21 @@
-<!-- Formulaire de Code Promo TasteBraga (Géré par Netlify Forms) -->
-<form name="codigo-desconto" method="POST" data-netlify="true" class="promo-form">
-  <!-- Champ caché requis par Netlify -->
-  <input type="hidden" name="form-name" value="codigo-desconto" />
-  
-  <h3>🎟️ Obter Desconto Exclusivo TasteBraga</h3>
-  <p>Preencha para receber o seu código e apresentar no restaurante:</p>
+  <!-- Placer le formulaire vers la fin du fichier, avant </body> -->
+  <section id="desconto" style="padding: 20px; background: #111; color: #fff; text-align: center;">
+    <form name="codigo-desconto" method="POST" data-netlify="true" class="promo-form" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+      <input type="hidden" name="form-name" value="codigo-desconto" />
+      
+      <h3>🎟️ Obter Desconto Exclusivo TasteBraga</h3>
+      <p>Preencha para receber o seu código e apresentar no restaurante:</p>
 
-  <label for="nome">Seu Nome:</label>
-  <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required />
+      <input type="text" name="nome" placeholder="Seu Nome (Ex: João)" required style="padding: 10px; border-radius: 5px; border: none;" />
+      <input type="text" name="contacto" placeholder="Seu WhatsApp / E-mail" required style="padding: 10px; border-radius: 5px; border: none;" />
+      <input type="text" name="restaurante" value="Francesinha / Bacalhau" readonly style="padding: 10px; border-radius: 5px; border: none; background: #eee;" />
+      <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
 
-  <label for="whatsapp">Seu WhatsApp / E-mail:</label>
-  <input type="text" id="whatsapp" name="contacto" placeholder="Ex: 912345678" required />
+      <button type="submit" style="padding: 12px; background: #e50914; color: white; font-weight: bold; border: none; border-radius: 5px; cursor: pointer;">
+        Obter Código de Desconto 🚀
+      </button>
+    </form>
+  </section>
 
-  <label for="restaurante">Restaurante / Prato:</label>
-  <input type="text" id="restaurante" name="restaurante" value="Francesinha / Bacalhau" readonly />
-
-  <!-- Destinataire de notification ou suivi -->
-  <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
-
-  <button type="submit" class="btn-promo">Obter Código de Desconto 🚀</button>
-</form>
+</body>
+</html>
