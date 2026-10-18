@@ -1,21 +1,117 @@
-  <!-- Placer le formulaire vers la fin du fichier, avant </body> -->
-  <section id="desconto" style="padding: 20px; background: #111; color: #fff; text-align: center;">
-    <form name="codigo-desconto" method="POST" data-netlify="true" class="promo-form" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
-      <input type="hidden" name="form-name" value="codigo-desconto" />
-      
-      <h3>🎟️ Obter Desconto Exclusivo TasteBraga</h3>
-      <p>Preencha para receber o seu código e apresentar no restaurante:</p>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TasteBraga — O Guia Gastronómico de Braga</title>
+  <style>
+    :root {
+      --primary: #e50914;
+      --bg: #141414;
+      --card-bg: #1f1f1f;
+      --text: #ffffff;
+      --text-muted: #aaaaaa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding-bottom: 50px; }
+    header { background: #000; text-align: center; padding: 25px 15px; border-bottom: 2px solid var(--primary); }
+    header h1 { font-size: 2rem; color: var(--primary); letter-spacing: 1px; }
+    header p { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 20px 15px; }
+    .section-title { font-size: 1.4rem; margin-bottom: 20px; text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s; border: 1px solid #2a2a2a; }
+    .card:hover { transform: translateY(-4px); }
+    .card-img { width: 100%; height: 200px; object-fit: cover; background: #333; }
+    .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-title { font-size: 1.2rem; margin-bottom: 8px; color: #fff; }
+    .card-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; line-height: 1.4; }
+    .btn-action { background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; width: 100%; font-size: 0.95rem; }
+    .btn-action:hover { background: #b80710; }
 
-      <input type="text" name="nome" placeholder="Seu Nome (Ex: João)" required style="padding: 10px; border-radius: 5px; border: none;" />
-      <input type="text" name="contacto" placeholder="Seu WhatsApp / E-mail" required style="padding: 10px; border-radius: 5px; border: none;" />
-      <input type="text" name="restaurante" value="Francesinha / Bacalhau" readonly style="padding: 10px; border-radius: 5px; border: none; background: #eee;" />
-      <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
+    /* Modal (Popup) Formulario */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 15px; }
+    .modal-content { background: var(--card-bg); width: 100%; max-width: 420px; padding: 25px; border-radius: 12px; border: 1px solid #333; position: relative; }
+    .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+    .modal h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary); }
+    .modal p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
+    .modal input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #444; background: #111; color: #fff; }
+  </style>
+</head>
+<body>
 
-      <button type="submit" style="padding: 12px; background: #e50914; color: white; font-weight: bold; border: none; border-radius: 5px; cursor: pointer;">
-        Obter Código de Desconto 🚀
-      </button>
-    </form>
-  </section>
+  <header>
+    <h1>TasteBraga</h1>
+    <p>Os Melhores Pratos & Restaurantes de Braga com Descontos Exclusivos</p>
+  </header>
+
+  <div class="container">
+    <h2 class="section-title">🔥 Especialidades em Destaque</h2>
+    
+    <div class="grid">
+      <!-- Card 1: Francesinha -->
+      <div class="card">
+        <div class="card-img" style="background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+        <div class="card-body">
+          <h3 class="card-title">Francesinha Tradicional</h3>
+          <p class="card-desc">Queijo derretido, carnes selecionadas e o autêntico molho especial de Braga.</p>
+          <button class="btn-action" onclick="openModal('Francesinha Tradicional')">Obter Código de Desconto 🚀</button>
+        </div>
+      </div>
+
+      <!-- Card 2: Bacalhau -->
+      <div class="card">
+        <div class="card-img" style="background: url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+        <div class="card-body">
+          <h3 class="card-title">Bacalhau à Braga</h3>
+          <p class="card-desc">Bacalhau frito, batatas às rodelas e cebolada dourada em azeite virgem extra.</p>
+          <button class="btn-action" onclick="openModal('Bacalhau à Braga')">Obter Código de Desconto 🚀</button>
+        </div>
+      </div>
+
+      <!-- Card 3: Attiéké -->
+      <div class="card">
+        <div class="card-img" style="background: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+        <div class="card-body">
+          <h3 class="card-title">Attiéké & Peixe Frito</h3>
+          <p class="card-desc">Especialidade africana exclusiva em Braga com peixe frito crocante e bananas maduras.</p>
+          <button class="btn-action" onclick="openModal('Attiéké com Peixe Frito')">Obter Código de Desconto 🚀</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal / Formulario Popup -->
+  <div id="promoModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3>🎟️ Garantir Desconto Exclusivo</h3>
+      <p>Introduza o seu contacto para gerar o código e ser redirecionado para a e-reserva do restaurante:</p>
+
+      <form name="codigo-desconto" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="codigo-desconto" />
+        <input type="hidden" id="selectedPrato" name="restaurante_prato" value="" />
+        <input type="hidden" name="email_destino" value="tastebraga@gmail.com" />
+
+        <input type="text" name="nome" placeholder="O seu nome" required />
+        <input type="text" name="contacto" placeholder="Seu WhatsApp ou E-mail" required />
+        
+        <button type="submit" class="btn-action">Ver Oferta & Reservar 📲</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(pratoNome) {
+      document.getElementById('selectedPrato').value = pratoNome;
+      document.getElementById('promoModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('promoModal').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
