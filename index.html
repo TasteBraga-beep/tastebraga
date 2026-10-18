@@ -40,7 +40,7 @@
     }
     .btn-partner:hover { transform: translateY(-2px); }
 
-    /* Hero Slider Dynamique (Exclusivité Plats Centrés) */
+    /* Hero Slider Dynamique (Focus Plats Uniquement) */
     .hero-slider {
       position: relative; width: 100%; height: 320px; overflow: hidden;
       border-bottom: 1px solid var(--border-color);
@@ -150,7 +150,7 @@
     <a href="mailto:tastebraga@gmail.com?subject=Sou%20Restaurante%20-%20Parceria%20TasteBraga" class="btn-partner">Sou Restaurante</a>
   </header>
 
-  <!-- Hero Slider Dynamique (Focus Plats) -->
+  <!-- Hero Slider Dynamique (Vrais Plats de Braga) -->
   <div class="hero-slider">
     <div class="slide active" style="background-image: url('https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=');">
       <div class="slide-overlay">
@@ -194,31 +194,31 @@
   <!-- Menu Cards Grid -->
   <div class="grid" id="cardGrid">
 
+    <!-- Bacalhau à Braga (Vrai lien d'image de plat traditionnel) -->
+    <div class="card" data-category="historicos" onclick="openModal('Bacalhau à Braga (à Narcisa)', 'O autêntico bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e cebolada dourada.', 'https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg')">
+      <div class="card-img" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
+        <div class="badge">★ 4.9 Histórico</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Bacalhau à Braga (à Narcisa)</div>
+        <div class="card-desc">Bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e uma saborosa cebolada.</div>
+        <div class="card-footer">
+          <span>📍 Ícone de Braga</span>
+          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Arroz de Pato -->
     <div class="card" data-category="historicos" onclick="openModal('Arroz de Pato Tradicional', 'O autêntico Arroz de Pato confecionado ao estilo tradicional do Minho, dourado no forno e servido com rodelas de chouriço.', 'https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=')">
       <div class="card-img" style="background-image: url('https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=');">
-        <div class="badge">★ 4.9 Histórico</div>
+        <div class="badge">★ 4.9 Tradicional</div>
       </div>
       <div class="card-content">
         <div class="card-title">Arroz de Pato Tradicional</div>
         <div class="card-desc">Arroz de pato estufado no forno, enriquecido com chouriço e aromas do Minho.</div>
         <div class="card-footer">
           <span>📍 Receita Típica</span>
-          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Especialidade Tradicional -->
-    <div class="card" data-category="historicos" onclick="openModal('Prato Típico de Braga', 'Seleção especial dos sabores mais autênticos e tradicionais confecionados pelos mestres da região.', 'https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg')">
-      <div class="card-img" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
-        <div class="badge">★ 4.9 Especialidade</div>
-      </div>
-      <div class="card-content">
-        <div class="card-title">Prato Típico & Papas de Sarrabulho</div>
-        <div class="card-desc">Uma iguaria rica e reconfortante da tradição gastronómica bracarense.</div>
-        <div class="card-footer">
-          <span>📍 Centro Histórico</span>
           <span style="color: var(--primary-red); font-weight: 800;">€€</span>
         </div>
       </div>
