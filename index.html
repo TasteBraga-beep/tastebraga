@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TasteBraga — A Gastronomia Histórica de Braga</title>
+  <title>TasteBraga — Gastronomia de Braga</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -14,7 +14,6 @@
       --text-white: #FFFFFF;
       --text-muted: #9CA3AF;
       --border-color: #222733;
-      --tag-gold: #D97706;
       --tag-purple: #8B5CF6;
     }
 
@@ -38,11 +37,10 @@
       border-radius: 10px; cursor: pointer; text-decoration: none; font-size: 0.88rem;
       box-shadow: 0 4px 14px rgba(200, 16, 46, 0.35); transition: transform 0.2s;
     }
-    .btn-partner:hover { transform: translateY(-2px); }
 
-    /* Hero Slider Dynamique (Focus Plats Uniquement) */
+    /* Hero Banner Dynamique (Exclusivité Plats Authenticité) */
     .hero-slider {
-      position: relative; width: 100%; height: 320px; overflow: hidden;
+      position: relative; width: 100%; height: 300px; overflow: hidden;
       border-bottom: 1px solid var(--border-color);
     }
     .slide {
@@ -53,7 +51,7 @@
     .slide.active { opacity: 1; }
     .slide-overlay {
       width: 100%; padding: 40px 24px 24px;
-      background: linear-gradient(to top, rgba(11, 12, 14, 0.95) 0%, rgba(11, 12, 14, 0.4) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(11, 12, 14, 0.95) 0%, rgba(11, 12, 14, 0.3) 60%, transparent 100%);
     }
     .slide-overlay h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
     .slide-overlay p { color: var(--text-muted); font-size: 0.95rem; }
@@ -68,24 +66,24 @@
       color: white; font-size: 0.95rem;
     }
 
-    /* Categories Horizontal Scroll */
+    /* Categories Scroll */
     .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
     .cat-chip {
       background-color: var(--card-bg); border: 1px solid var(--border-color);
       color: var(--text-white); padding: 9px 18px; border-radius: 25px;
-      font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.2s;
+      font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer;
     }
-    .cat-chip.active, .cat-chip:hover { background-color: var(--primary-red); border-color: var(--primary-red); }
+    .cat-chip.active { background-color: var(--primary-red); border-color: var(--primary-red); }
 
-    .section-title { font-size: 1.35rem; font-weight: 800; margin: 25px 20px 15px; display: flex; justify-content: space-between; align-items: center; }
+    .section-title { font-size: 1.35rem; font-weight: 800; margin: 25px 20px 15px; }
 
     /* Cards Grid */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; padding: 0 20px; }
     .card {
       background-color: var(--card-bg); border-radius: 18px; overflow: hidden;
-      border: 1px solid var(--border-color); transition: transform 0.25s, box-shadow 0.25s; cursor: pointer;
+      border: 1px solid var(--border-color); cursor: pointer; transition: transform 0.2s;
     }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-color: #333948; }
+    .card:hover { transform: translateY(-4px); }
     .card-img { height: 180px; background-size: cover; background-position: center; position: relative; }
     .badge {
       position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.8);
@@ -94,8 +92,7 @@
     }
     .badge-soon {
       position: absolute; top: 12px; left: 12px; background: var(--tag-purple);
-      color: white; padding: 5px 12px; border-radius: 10px;
-      font-size: 0.75rem; font-weight: 700;
+      color: white; padding: 5px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700;
     }
     .card-content { padding: 18px; }
     .card-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: #fff; }
@@ -110,8 +107,7 @@
     }
     .modal-content {
       background: var(--card-bg); width: 100%; max-width: 460px; border-radius: 22px;
-      overflow: hidden; border: 1px solid var(--border-color); animation: fadeIn 0.3s ease;
-      position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+      overflow: hidden; border: 1px solid var(--border-color); position: relative;
     }
     .modal-header { height: 170px; background-size: cover; background-position: center; position: relative; }
     .close-modal {
@@ -126,17 +122,15 @@
     .form-input {
       width: 100%; padding: 13px; margin-bottom: 12px; border-radius: 10px;
       border: 1px solid var(--border-color); background: #0B0C0E; color: white;
-      font-size: 0.92rem; outline: none; transition: border-color 0.2s;
+      font-size: 0.92rem; outline: none;
     }
     .form-input:focus { border-color: var(--primary-red); }
 
     .btn-reserve {
       display: block; width: 100%; background: linear-gradient(135deg, var(--primary-red), var(--accent-red));
       color: white; text-align: center; padding: 14px; border-radius: 12px; font-weight: 800;
-      text-decoration: none; border: none; cursor: pointer; font-size: 1rem; margin-top: 5px;
-      box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
+      border: none; cursor: pointer; font-size: 1rem; margin-top: 5px;
     }
-    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   </style>
 </head>
 <body>
@@ -147,27 +141,27 @@
       <img src="https://avatars.githubusercontent.com/u/344043097?v=4&size=64" alt="Logo TasteBraga" class="logo-img">
       <div class="logo-text"><span style="color: var(--primary-red);">T</span>aste<span style="color: var(--primary-red);">B</span>raga</div>
     </div>
-    <a href="mailto:tastebraga@gmail.com?subject=Sou%20Restaurante%20-%20Parceria%20TasteBraga" class="btn-partner">Sou Restaurante</a>
+    <a href="mailto:tastebraga@gmail.com?subject=Parceria%20Restaurante%20-%20TasteBraga" class="btn-partner">Sou Restaurante</a>
   </header>
 
-  <!-- Hero Slider Dynamique (Vrais Plats de Braga) -->
+  <!-- Hero Slider (Plats Authentiques Uniquement) -->
   <div class="hero-slider">
     <div class="slide active" style="background-image: url('https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=');">
       <div class="slide-overlay">
         <h2>🦆 Arroz de Pato Tradicional</h2>
-        <p>A receita autêntica ao estilo tradicional do Minho.</p>
+        <p>A receita autêntica ao estilo do Minho com chouriço tostado.</p>
       </div>
     </div>
     <div class="slide" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
       <div class="slide-overlay">
-        <h2>🐟 Especialidades Típicas de Braga</h2>
-        <p>Os sabores autênticos selecionados para os apreciadores da boa mesa.</p>
+        <h2>🐟 Bacalhau à Braga</h2>
+        <p>Bacalhau frito, batatas às rodelas e cebolada dourada em azeite virgem extra.</p>
       </div>
     </div>
     <div class="slide" style="background-image: url('1cac91acdc56b8154ab1f3fbb54a3fd2.jpg');">
       <div class="slide-overlay">
         <h2>✨ Attiéké com Peixe Frito</h2>
-        <p>A novidade exótica exclusiva em breve em Braga.</p>
+        <p>Lançamento exclusivo em breve para sondagem dos apreciadores.</p>
       </div>
     </div>
   </div>
@@ -175,16 +169,13 @@
   <!-- Search Box -->
   <div class="search-container">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Procurar arroz de pato, bacalhau, pudim..." onkeyup="filterCards()">
+      <input type="text" id="searchInput" placeholder="Procurar arroz de pato, bacalhau, francesinha..." onkeyup="filterCards()">
     </div>
   </div>
 
-  <!-- Filter Categories -->
+  <!-- Categories -->
   <div class="categories">
-    <div class="cat-chip active" onclick="filterCat('all')">🔥 Todos</div>
-    <div class="cat-chip" onclick="filterCat('historicos')">🏛️ Pratos Históricos</div>
-    <div class="cat-chip" onclick="filterCat('doces')">🍮 Sobremesas</div>
-    <div class="cat-chip" onclick="filterCat('africana')">✨ Exclusivos</div>
+    <div class="cat-chip active">🔥 Todos os Pratos</div>
   </div>
 
   <div class="section-title">
@@ -194,23 +185,8 @@
   <!-- Menu Cards Grid -->
   <div class="grid" id="cardGrid">
 
-    <!-- Bacalhau à Braga (Vrai lien d'image de plat traditionnel) -->
-    <div class="card" data-category="historicos" onclick="openModal('Bacalhau à Braga (à Narcisa)', 'O autêntico bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e cebolada dourada.', 'https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg')">
-      <div class="card-img" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
-        <div class="badge">★ 4.9 Histórico</div>
-      </div>
-      <div class="card-content">
-        <div class="card-title">Bacalhau à Braga (à Narcisa)</div>
-        <div class="card-desc">Bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e uma saborosa cebolada.</div>
-        <div class="card-footer">
-          <span>📍 Ícone de Braga</span>
-          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
-        </div>
-      </div>
-    </div>
-
     <!-- Arroz de Pato -->
-    <div class="card" data-category="historicos" onclick="openModal('Arroz de Pato Tradicional', 'O autêntico Arroz de Pato confecionado ao estilo tradicional do Minho, dourado no forno e servido com rodelas de chouriço.', 'https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=')">
+    <div class="card" onclick="openModal('Arroz de Pato Tradicional', 'O autêntico Arroz de Pato confecionado ao estilo tradicional do Minho, dourado no forno e servido com rodelas de chouriço.', 'https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=')">
       <div class="card-img" style="background-image: url('https://media.istockphoto.com/id/1346150870/pt/foto/authentic-arroz-de-pato-duck-rice-is-a-traditional-recipe-from-portugal-cooked-with-red-wine.jpg?s=612x612&w=0&k=20&c=TCImN-vmfND44s7OXtRLZ29ai0neGaljfa-wC3LTj7g=');">
         <div class="badge">★ 4.9 Tradicional</div>
       </div>
@@ -224,8 +200,38 @@
       </div>
     </div>
 
+    <!-- Bacalhau à Braga -->
+    <div class="card" onclick="openModal('Bacalhau à Braga (à Narcisa)', 'O autêntico bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e cebolada dourada.', 'https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg')">
+      <div class="card-img" style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-o/15/3a/5a/d2/photo0jpg.jpg');">
+        <div class="badge">★ 4.9 Histórico</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Bacalhau à Braga (à Narcisa)</div>
+        <div class="card-desc">Bacalhau frito em azeite virgem extra, ladeado por batatas rodelas e uma saborosa cebolada.</div>
+        <div class="card-footer">
+          <span>📍 Ícone de Braga</span>
+          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Francesinha -->
+    <div class="card" onclick="openModal('Francesinha à Moda de Braga', 'Pão de forma tostado, carnes grelhadas e o famoso molho artesanal secreto de Braga.', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80')">
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80');">
+        <div class="badge">★ 4.9 Favorito</div>
+      </div>
+      <div class="card-content">
+        <div class="card-title">Francesinha à Moda de Braga</div>
+        <div class="card-desc">Recheio generoso com carnes selecionadas e o famoso molho artesanal secreto.</div>
+        <div class="card-footer">
+          <span>📍 Centro Urbano</span>
+          <span style="color: var(--primary-red); font-weight: 800;">€€</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Pudim Abade de Priscos -->
-    <div class="card" data-category="doces" onclick="openModal('Pudim Abade de Priscos', 'Doce conventual único criado em Braga no séc. XIX, rico em gemas de ovo, açúcar e o toque distinto de toucinho.', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
+    <div class="card" onclick="openModal('Pudim Abade de Priscos', 'Doce conventual único criado em Braga no séc. XIX, rico em gemas de ovo e o toque distinto de toucinho.', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80')">
       <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80');">
         <div class="badge">★ 5.0 Conventual</div>
       </div>
@@ -239,17 +245,17 @@
       </div>
     </div>
 
-    <!-- Plat Attieké -->
-    <div class="card" data-category="africana" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Em Breve)', 'Attieké fresco premium, peixe frito crocante, vinagrete de tomate/cebola e maionese.', '1cac91acdc56b8154ab1f3fbb54a3fd2.jpg')">
+    <!-- Plat Attieké (Sondage) -->
+    <div class="card" onclick="openModal('Attieké com Peixe Frito 🇨🇮 (Sondagem)', 'Attieké fresco premium, peixe frito crocante e vinagrete. Inscreva-se para a sondagem exclusiva em Braga.', '1cac91acdc56b8154ab1f3fbb54a3fd2.jpg')">
       <div class="card-img" style="background-image: url('1cac91acdc56b8154ab1f3fbb54a3fd2.jpg');">
-        <div class="badge-soon">✨ Brevemente em Braga</div>
+        <div class="badge-soon">✨ Brevemente / Sondagem</div>
         <div class="badge">★ Exclusivo</div>
       </div>
       <div class="card-content">
-        <div class="card-title">Attieké com Peixe Frito & Maionese 🇨🇮</div>
-        <div class="card-desc">A iguaria africana mais apreciada, brevemente disponível por encomenda exclusiva em Braga.</div>
+        <div class="card-title">Attieké com Peixe Frito 🇨🇮</div>
+        <div class="card-desc">Participe na sondagem para o lançamento desta iguaria exclusiva em Braga.</div>
         <div class="card-footer">
-          <span>🔮 Em Breve</span>
+          <span>🔮 Sondagem</span>
           <span style="color: var(--tag-purple); font-weight: 800;">Première</span>
         </div>
       </div>
@@ -275,24 +281,21 @@
           <input type="text" name="nome" class="form-input" placeholder="Seu Nome (Ex: João Silva)" required />
           <input type="text" name="contacto" class="form-input" placeholder="Seu WhatsApp ou E-mail" required />
           
-          <button type="submit" class="btn-reserve">🎟️ Receber Desconto Exclusivo</button>
+          <button type="submit" class="btn-reserve">🎟️ Solagitar Desconto / Participar</button>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- Scripts carrousel & modale -->
   <script>
-    // Carrousel Automatique
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     setInterval(() => {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
-    }, 4500);
+    }, 4000);
 
-    // Gestao da Modale
     function openModal(title, desc, imgUrl) {
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalDesc').innerText = desc;
@@ -308,8 +311,6 @@
         document.getElementById('restaurantModal').style.display = 'none';
       }
     }
-
-    // Pesquisa
     function filterCards() {
       let input = document.getElementById('searchInput').value.toLowerCase();
       let cards = document.getElementsByClassName('card');
