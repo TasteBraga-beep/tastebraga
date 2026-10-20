@@ -29,7 +29,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -62,7 +62,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 30px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         h2 {
@@ -78,47 +78,22 @@
             margin-bottom: 20px;
         }
 
-        /* Galerie de plats */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        .culinary-list {
+            list-style: none;
+            margin-bottom: 20px;
         }
 
-        .dish-card {
-            background: #222;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            text-align: left;
-        }
-
-        .dish-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background-color: #333;
-        }
-
-        .dish-info {
-            padding: 15px;
-        }
-
-        .dish-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--text-main);
-            margin-bottom: 5px;
-        }
-
-        .dish-desc {
-            font-size: 0.85rem;
+        .culinary-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
             color: var(--text-muted);
-            margin-bottom: 0;
+            font-size: 0.95rem;
         }
 
-        /* Formulaire */
+        .culinary-list li strong {
+            color: var(--text-main);
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -131,8 +106,7 @@
         }
 
         input[type="text"],
-        input[type="email"],
-        textarea {
+        input[type="email"] {
             width: 100%;
             padding: 12px;
             background-color: #222;
@@ -142,7 +116,7 @@
             font-size: 1rem;
         }
 
-        input:focus, textarea:focus {
+        input:focus {
             outline: none;
             border-color: var(--primary-red);
         }
@@ -195,39 +169,16 @@
             <div class="subtitle">O Clube Gastronómico de Braga — Seleção B2B de Restaurantes Independentes</div>
         </header>
 
-        <!-- Galerie des plats -->
         <div class="card">
-            <h2>Especialidades em Destaque</h2>
-            <p>Conheça alguns dos pratos emblemáticos representados pela nossa rede de parceiros em Braga.</p>
-            
-            <div class="gallery-grid">
-                <div class="dish-card">
-                    <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" alt="Bacalhau à Braga" class="dish-img">
-                    <div class="dish-info">
-                        <div class="dish-title">Bacalhau à Narcisa / Braga</div>
-                        <p class="dish-desc">Bacalhau frito com batatas às rodelas e cebolada tradicional.</p>
-                    </div>
-                </div>
-
-                <div class="dish-card">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Francesinha à Moda de Braga" class="dish-img">
-                    <div class="dish-info">
-                        <div class="dish-title">Francesinha Especial</div>
-                        <p class="dish-desc">Receita artesanal com molho rico e ingredientes de alta qualidade.</p>
-                    </div>
-                </div>
-
-                <div class="dish-card">
-                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Pudim Abade de Priscos" class="dish-img">
-                    <div class="dish-info">
-                        <div class="dish-title">Pudim Abade de Priscos</div>
-                        <p class="dish-desc">A sobremesa icónica e histórica da tradição bracarense.</p>
-                    </div>
-                </div>
-            </div>
+            <h2>Especialidades Gastronómicas de Referência</h2>
+            <p>O BragaGourmet Club destaca a excelência da restauração tradicional bracarense através de uma curadoria independente de parceiros selecionados:</p>
+            <ul class="culinary-list">
+                <li><strong>Bacalhau à Braga (Narcisa):</strong> O clássico regional confecionado com batatas às rodelas e cebolada tradicional de excelência.</li>
+                <li><strong>Francesinha à Moda de Braga:</strong> A autêntica receita artesanal com molho rico e ingredientes de primeira qualidade.</li>
+                <li><strong>Pudim Abade de Priscos:</strong> A sobremesa histórica e emblemática da doçaria conventual de Braga.</li>
+            </ul>
         </div>
 
-        <!-- Formulaire de partenariat B2B -->
         <div class="card">
             <h2>Registo de Parceiro B2B</h2>
             <p>Junte-se à nossa rede exclusiva de alta gastronomia tradicional em Braga. Modelo independente de apporteur d'affaires.</p>
